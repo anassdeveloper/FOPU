@@ -1,6 +1,9 @@
 const loginForm = document.querySelector('.form_login');
 const formPost = document.querySelector('.create-post_form');
 
+const local_url = 'http://localhost:3000';
+const prod_url = 'https://fopu.onrender.com';
+
 if(loginForm){
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
@@ -8,7 +11,7 @@ if(loginForm){
         const email = document.getElementById('email').value;
         const pass = document.getElementById('password').value;
 
-        fetch('http://localhost:3000/auth/login', {
+        fetch(`${prod_url}/auth/login`, {
             method: 'POST',
             headers: {
                 Accept: "application/json",

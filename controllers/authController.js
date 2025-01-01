@@ -15,6 +15,7 @@ const createToken = userID => {
 
 exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
+    console.log(email, password);
     
     if(!email || !password) {
         next(new AppError('Please provide email or password', 400));

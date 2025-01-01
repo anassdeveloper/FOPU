@@ -43,7 +43,17 @@ exports.deleteOneUser = catchAsync(async (req, res) => {
 })
 
 exports.newuser = catchAsync(async(req, res, next) => {
-    const newUser = await User.create(req.body);
+    const { name, email, password, passwordConfirm, role } = req.body;
+
+    const newUser = await User.create({
+        name,
+        email,
+        password,
+        passwordConfirm,
+        role
+    });
+    console.log(newUser);
+    
     res.status(200).json({
         status: 'success',
         message: 'User successfully register',
