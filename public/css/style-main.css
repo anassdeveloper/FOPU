@@ -30,8 +30,7 @@ input, textarea{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 1.25rem 2.13rem;
+    padding: 1.25rem 2rem;
 }
 /* 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 */
 .header_section--user{
