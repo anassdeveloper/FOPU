@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href='/css/style-main.css')
+        title FOPU | #{title}
+    body
+        block page
+            include _header
+        
+            block content
+                include _create-post
+                h2 Hello to new FOPU Social media APPLICATION @2025
+                p=  !user ? 'Welcome TO FOPU' : ('Welcome ' + user.name)
+        script(src="/js/index.js")

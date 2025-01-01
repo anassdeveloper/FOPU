@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    line-height: 1.4;
+    box-sizing: border-box;
+}
+
+
+input, textarea{
+    border: none;
+    outline: none;
+}
+
+/* __________ HEADER SECTION DESIGN _____________ */
+.header_section{
+    border-bottom: 1px solid orange;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1.25rem 2.13rem;
+}
+/* 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 */
+.header_section--user{
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+.header_section--photo{
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    border: 1px solid orange;
+    overflow: hidden;
+}
+.header_section--userphoto{height: 100%; width: 100%;}
+.header_section--logo strong{
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: blue;
+}
+.header_section--nav{}
+.header_section--link{}
+.header_section--username{
+    font-size: 2rem;
+    font-weight: bold;
+    color: orangered;
+}
+
+.header_section--userinfo{
+
+}

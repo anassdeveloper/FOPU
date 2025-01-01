@@ -1,0 +1,13 @@
+extends base
+
+block content
+    form.form_login
+        - console.log(user)
+        .form_group 
+            label.form_label(for='email') Address Email :
+            input#email.input_field(type="email" placeholder="example@email.com" name='email')
+        .form_group 
+            label.form_label(for='email') Password :
+            input#password.input_field(type="password" placeholder="*******" name='password')
+        .form_group 
+            input#submit.input_field(type="submit" value='submit')
