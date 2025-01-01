@@ -52,8 +52,7 @@ exports.newuser = catchAsync(async(req, res, next) => {
         passwordConfirm,
         role
     });
-    console.log(newUser);
-    
+
     res.status(200).json({
         status: 'success',
         message: 'User successfully register',

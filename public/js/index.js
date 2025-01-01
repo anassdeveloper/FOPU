@@ -47,7 +47,7 @@ if(formPost){
 
             
 
-            const res = await fetch('http://localhost:3000/api/v1/posts/create-new-post', {
+            const res = await fetch(`${prod_url}/create-new-post`, {
                 method: "POST",
                 body: fm
             });
