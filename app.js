@@ -17,7 +17,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-
 // add frame worl
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));

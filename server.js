@@ -10,9 +10,12 @@ process.on('uncaughtException', err => {
     process.exit(1);
 });
 
+const DB_URL = process.env.DATABASE_MONGODB
+.replace('<password>', process.env.DATABASE_PASSWORD);
+
 
 mongoose
-.connect(process.env.DATABASE_LOCAL).then(db => {
+.connect(DB_URL).then(db => {
     console.log('Database Connection successfuly');
 })
 

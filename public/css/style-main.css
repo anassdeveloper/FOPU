@@ -8,7 +8,12 @@ html{
     font-size: 62.5%;
 }
 
+@media only screen and (max-width:600px) {
+    html{ font-size:52%;}
+}
+
 body{
+    position: relative;
     line-height: 1.4;
     box-sizing: border-box;
 }
@@ -57,4 +62,26 @@ input, textarea{
 
 .header_section--userinfo{
 
+}
+
+
+.box_back {
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.box_back:hover{
+    transform: scale(1.1);
+}
+.back-link:link,
+.back-link:active{
+    display: inline-block;
 }
