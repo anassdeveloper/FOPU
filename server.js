@@ -9,10 +9,8 @@ process.on('uncaughtException', err => {
     console.log('UNCAUGHT EXCEPTION 🔥 SHOT DOWN...');
     process.exit(1);
 });
-
 const DB_URL = process.env.DATABASE_MONGODB
 .replace('<password>', process.env.DATABASE_PASSWORD);
-
 
 mongoose
 .connect(DB_URL).then(db => {
