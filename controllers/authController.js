@@ -16,6 +16,7 @@ const createToken = userID => {
 exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
     
+    console.log(email, password);
 
     if(!email || !password) {
         next(new AppError('Please provide email or password', 400));
@@ -43,7 +44,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.protectRoute = catchAsync(async (req, res, next) => {
 
-    const { token } = req.cookies || req.headers.authorization;
+    const { token } = req.cookies;
     
     if(!token) 
         return next(new AppError('Please login to your account', 401));

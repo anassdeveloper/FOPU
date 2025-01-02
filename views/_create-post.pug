@@ -1,10 +1,10 @@
 section.create-post 
     form.create-post_form(data-user=user) 
-        p create your one post 😅
+        h3.heading-primary create your one post 😅
         .form_group 
-            textarea#title.form_input(rows="8" cols="28" placeholder="Write title of post" name='title' required)
+            textarea#title.form_input(rows="4" cols="28" placeholder="Write title of post" name='title' required)
         .form_group 
-            label.form_label(for="photo") choose photo
+            label.form_label(for="photo") choose photo <i class="fa-regular fa-image"></i>
             input#photo.form_input(type='file' name="photo" accept="/image*")
-        .form_group 
-            input.form_input--btn(type='submit' value="register")
+        .form_group
+            button.form_input--btn(type='submit') create <i class="fa-solid fa-arrow-up-from-bracket"></i>

@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const AppError = require('./utils/appError');
 const cookieParser = require('cookie-parser');
-
+const cors = require('cors');
 //ALL REQUIRE ROUTER
 const authRouter = require('./routes/authRouter');
 const userRouter = require('./routes/userRouter');
@@ -15,6 +15,7 @@ let globalErrorHandler = require('./controllers/errorController')
 // build in middelware in express
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors())
 
 
 // add frame worl

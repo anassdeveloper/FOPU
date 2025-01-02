@@ -47,7 +47,7 @@ if(formPost){
 
             
 
-            const res = await fetch(`${prod_url}/create-new-post`, {
+            const res = await fetch(`${prod_url}/api/v1/posts/create-new-post`, {
                 method: "POST",
                 body: fm
             });
@@ -59,5 +59,12 @@ if(formPost){
         }catch(err){
           
         }
+    })
+}
+
+if(document.getElementById('photo')){
+    document.getElementById('photo').addEventListener('change', e => {
+        document.querySelector('.form_label').classList.add('saved');
+        document.querySelector('.form_label').innerHTML = `photo saved <i class="fa-solid fa-check"></i>`
     })
 }

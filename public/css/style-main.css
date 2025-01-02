@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root{
+    --main-color: #777;
+    --main-font:"Outfit", serif;
+}
 *{
     margin: 0;
     padding: 0;
@@ -16,6 +22,9 @@ body{
     position: relative;
     line-height: 1.4;
     box-sizing: border-box;
+    font-family: var(--main-font);
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 
@@ -88,8 +97,67 @@ input, textarea{
 
 /* ____________________ FORM TO CREATE POSTS ___________________ */
 .create-post{
-    background-color: blue;
+    border: 1px solid #ccc;
     width: 100vw;
     max-width: 45rem;
     margin: 0 auto;
+    padding: 1.75rem;
+    border-radius: 1rem;
 } 
+
+.form_group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_group textarea{
+    font-size: 2.4rem;
+}
+
+.heading-primary{
+    font-size: 3.2rem;
+    margin-bottom: 2rem;
+}
+.form_label{
+    font-size: 2.2rem;
+    text-align: center;
+    background-color: #ccc;
+    padding: 1.52rem 0;
+    border-radius: .4rem;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.form_label:hover{
+   background-color: green;
+   color: #fff;
+}
+.form_label.saved {
+    color: green;
+    background-color: #ccc;
+}
+.form_input[type="file"]{
+    display: none;
+}
+.form_input--btn{
+    font-size: 2.2rem;
+    font-weight: bold;
+    padding: 1.45rem;
+    width: 50%;
+    margin: 2rem auto;
+    border-radius: 10rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.form_input--btn:hover{
+    background-color: orange;
+}
+@media only screen and (max-width:600px){
+    .heading-primary{
+        font-size: 2.4rem;
+    }
+    .form_group textarea{
+        font-size: 1.8rem;
+    }
+}

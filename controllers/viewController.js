@@ -1,14 +1,20 @@
+const catchAsync = require('../utils/catchAsync');
+const Post = require('./../models/postModel');
+
 exports.login = (req, res, next) => {
     res.status(200).render('login', {
         title: 'Login'
     });
 }
 
-exports.getSite = (req, res, next) => {
+exports.getSite = catchAsync(async (req, res, next) => {
+    const posts = await Post.find();
     res.status(200).render('base', {
-        title: 'HOME'
+        title: 'HOME',
+        posts
     });
-}
+});
+
 
 exports.me = (req, res, next) => {
     res.status(200).render('account', {

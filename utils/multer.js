@@ -1,12 +1,18 @@
 const multer = require('multer');
 
+
 const multerStorage = multer.diskStorage({
     destination: function(req, file, cb){
         cb(null, './public/photos/posts');
     },
     filename: function(req, file, cb){
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + '-' + uniqueSuffix)
+        const indexPoint = file.originalname.lastIndexOf('.');
+        const shortName = file.originalname.slice(indexPoint);
+        let num = Math.floor(Math.random() * 4324);
+        
+        file.originalname = file.originalname.slice(0, file.originalname.indexOf('.')) + num + shortName;
+        file.originalname = file.originalname.split(' ').join('');
+        cb(null, file.originalname);
     }
 });
 

@@ -1,0 +1,8 @@
+main.global_posts 
+    h2 go to enjoy 😋
+    each post in posts 
+        .card_post 
+            p= post.username
+            p= post.title
+            img.post_photo(src=post.photo alt = 'Post PHOTO')
+    
