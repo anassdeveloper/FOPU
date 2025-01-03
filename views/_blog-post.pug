@@ -1,8 +1,17 @@
 main.global_posts 
-    h2 go to enjoy 😋
     each post in posts 
-        .card_post 
-            p= post.username
-            p= post.title
-            img.post_photo(src=post.photo alt = 'Post PHOTO')
+        .card_post
+            picture.card_post--photo 
+               img.card_post--img(src= post.photo alt='POST PHOTO') 
+            .card_post--content 
+                .card_box 
+                    img.card_box--img(src= post.userPhoto)
+                .card_box.card_box--text 
+                    h3.card_post--name= post.username
+                    span.card_post--time depuis 6min
+                    p.card_post--parag= post.title
+                .card_box.card_box--emoji 
+                    span 🎃
+                    span ASS 
+            
     

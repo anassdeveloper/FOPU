@@ -1,0 +1,23 @@
+extends base
+
+
+block content 
+
+    .register_container 
+        form.form_register
+            h3 create you self account 😎
+            .form_group 
+                input(type="text" name="name" placeholder="full name")
+            .form_group 
+                input(type="email" name="email" placeholder="example@email.com") 
+            .form_group
+                label Password :
+                input(type="password" name="password" placeholder='**********')
+            .form_group
+                label Confirm Password :
+                input(type="password" name="passwordConfirm" placeholder='**********') 
+            .form_group
+                label Choose Your photo
+                input(type="file" name="photo" accept='image/*')
+            .form_group
+                input(type="submit" value='send')

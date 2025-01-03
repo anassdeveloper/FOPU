@@ -21,3 +21,9 @@ exports.me = (req, res, next) => {
         title: 'Account'
     });
 }
+
+exports.register = (req, res, next) => {
+    res.status(200).render('register',{
+        title: "New Account "
+    } )
+}

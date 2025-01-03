@@ -3,7 +3,7 @@ const multer = require('multer');
 
 const multerStorage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, './public/photos/posts');
+        cb(null, './public/photos/users');
     },
     filename: function(req, file, cb){
         const indexPoint = file.originalname.lastIndexOf('.');

@@ -2,6 +2,7 @@ const Post = require('../models/postModel');
 const catchAsync = require('../utils/catchAsync');
 
 
+
 exports.getAllPosts = catchAsync(async (req, res, next) => {
     const db = await Post.find();
     res.status(200).json({
@@ -20,7 +21,7 @@ exports.createNewPost = catchAsync(async (req, res, next) => {
 
     const db = await Post.create({
         title, userId, userPhoto, username,
-        photo: req.file.photo_post
+        photo: req.file.photo
     });
     res.status(200).json({
         status: "success",

@@ -1,5 +1,6 @@
 const loginForm = document.querySelector('.form_login');
 const formPost = document.querySelector('.create-post_form');
+const formRegister = document.querySelector('.form_register');
 
 const local_url = 'http://localhost:3000';
 const prod_url = 'https://fopu.onrender.com';
@@ -66,5 +67,41 @@ if(document.getElementById('photo')){
     document.getElementById('photo').addEventListener('change', e => {
         document.querySelector('.form_label').classList.add('saved');
         document.querySelector('.form_label').innerHTML = `photo saved <i class="fa-solid fa-check"></i>`
+    })
+}
+
+if(formRegister){
+    formRegister.addEventListener('submit', async  e => {
+         try{
+            e.preventDefault();
+            const fm = new FormData(formRegister);
+            const res = await fetch(`${prod_url}/auth/newuser`, {
+                method: "POST",
+                body: fm
+            });
+
+            const result = await res.json();
+            console.log(result);
+            
+            if(result.status === 'success') location.reload(true);
+
+         }catch(err){
+            console.log(err);
+            alert('ERROR')
+         }
+    })
+}
+
+
+if(document.querySelector('.logout_box')){
+    document.querySelector('.logout_box').addEventListener('click', async e => {
+        const btn = e.target.closest('.logout_box').classList.value;
+         if(btn === 'logout_box'){
+            const res = await fetch(`${prod_url}/auth/logout`);
+            const result = await res.json();
+            if(result.status === "success") {
+                location.assign('/');
+            }
+         }
     })
 }

@@ -42,10 +42,12 @@ exports.login = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.protectRoute = catchAsync(async (req, res, next) => {
-
+exports.protectRoute = async (req, res, next) => {
+   try{
+      
     const { token } = req.cookies;
     
+
     if(!token) 
         return next(new AppError('Please login to your account', 401));
 
@@ -62,8 +64,11 @@ exports.protectRoute = catchAsync(async (req, res, next) => {
     res.locals.user = currentUser;
     req.user = currentUser;
     next();
+   }catch(err){
+       res.status(403).redirect('/login');
+   }
 
-});
+};
 
 
 exports.protectRouteAuthorization = catchAsync(async (req, res, next) => {
@@ -116,3 +121,13 @@ exports.forgetPassword = catchAsync(async (req, res, next) => {
         token: resetToken
     })
 })
+
+exports.logout = (req, res, next) => {
+    let token = 'logouted successufuly';
+        res.cookie('token', token, {
+            expiresIn: new Date(Date.now() + 10 * 1000),
+            httpOnly: true
+        });
+        res.status(200).json({status: "success"});
+    
+}

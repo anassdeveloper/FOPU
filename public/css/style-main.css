@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
 :root{
-    --main-color: #777;
+    --main-color: #7C90DB;
     --main-font:"Outfit", serif;
 }
 *{
@@ -25,6 +25,15 @@ body{
     font-family: var(--main-font);
     font-optical-sizing: auto;
     font-style: normal;
+    background: hsla(33, 100%, 53%, 1);
+
+background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -moz-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
+
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", endColorstr="#FFF95B", GradientType=1 );
 }
 
 
@@ -160,4 +169,119 @@ input, textarea{
     .form_group textarea{
         font-size: 1.8rem;
     }
+}
+
+
+/* _______________________ CREATION OF CONTENT POSTS ______________ */
+
+.global_posts{
+    padding: 1.75rem 1.24rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+}
+.heading_secondary{
+    font-size: 1.8rem;
+    margin-bottom: 1.4rem;
+}
+.card_post{
+    background-color: #1A8AD6;
+    border-radius: 2.25rem;
+    overflow: hidden;
+}
+.card_post--photo{
+  
+}
+.card_post--img{
+  width: 100%;
+}
+
+.card_post--content{
+   display: flex;
+   align-items: center;
+   gap: 1.2rem;
+   padding: .73rem;
+   
+}
+.card_box { }
+.card_box--img{
+    height: 5.51rem;
+    width: 5.51rem;
+    border-radius: 50%;
+}
+.card_box--emoji{
+  margin-left: auto;
+  background-color: orange;
+  border-radius: 1rem;
+  padding: .5rem;
+    font-size: 1.78rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .4rem;
+}
+.card_box--text{
+    flex: 1;
+    line-height: 1;
+}
+.card_post--name{
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: #000000;
+}
+.card_post--time{
+    display: inline-block;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 100;
+    margin-bottom: .82rem;
+}
+.card_post--parag{
+    font-size: 1.56rem;
+    padding-left: .92rem;
+    color: #0B3B5B;
+}
+
+/* .card_box--emoji{
+    padding: .5rem;
+    font-size: 1.78rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+} */
+
+@media only screen and (max-width:600px){
+   .card_post{
+    width: 100%;
+   }
+}
+
+
+/* ________________REGISTER FORM __________________ */
+
+.form_group{
+    border: 1px solid #777;
+    padding: 1rem;
+}
+
+.logout_box {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2.4rem;
+    background-color: orange;
+
+    padding: 1.33rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.logout_box:hover{
+    background-color: orangered;
+    transform: scale(1.08);
+    color: #ccc;
 }

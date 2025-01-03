@@ -5,7 +5,11 @@ const postSchema = new mongoose.Schema({
     photo: String,
     userId: String,
     userPhoto: String,
-    username: String
+    username: String,
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 const postModel = mongoose.model('Post', postSchema);

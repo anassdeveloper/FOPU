@@ -9,7 +9,7 @@ router.get('/:id', postController.getOnePost);
 
 router.post('/create-new-post', 
     upload.single('photo'),
-    uploadToCloud,
+    uploadToCloud(null, null),
     postController.createNewPost);
 
 

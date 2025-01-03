@@ -4,10 +4,10 @@ header.header_section
       nav.header_section--nav
         if(!user)
             a.header_section--link(href='/login') Login
-            a.header_section--link(href='/newuser') Sign Up 
+            a.header_section--link(href='/register') Sign Up 
         else 
             .header_section--user 
                 a.header_section--username(href="/me")= user.name
                 figure.header_section--photo 
-                    img.header_section--userphoto(src=`/photos/users/${user.photo}`)
+                    img.header_section--userphoto(src=user.photo)
                 

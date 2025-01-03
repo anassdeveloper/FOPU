@@ -11,22 +11,27 @@ cloudinary.config({
 
 
 
-const uploadToCloud = async (req, res, next) => {
+const uploadToCloud = (height, width) => {
+  return async (req, res, next) => {
     try{
+      
+
        if(!req.file){
         req.file = {
-          photo_post: ""
+          photo: ""
         }
         return next();
        } 
       const results = await cloudinary.uploader.upload(req.file.path);
       const url = cloudinary.url(results.public_id, {
+        height: height,
+        width: width,
         transformation: [
           {quality: 'auto'},
           {fetch_format:'auto'}
         ]
       });
-      req.file.photo_post = url;
+      req.file.photo = url;
       next();
     }catch(err){
         console.log(err.message);
@@ -37,4 +42,5 @@ const uploadToCloud = async (req, res, next) => {
     }
 }
 
+}
 module.exports = uploadToCloud;

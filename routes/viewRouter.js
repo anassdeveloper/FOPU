@@ -6,6 +6,7 @@ const authController = require('../controllers/authController');
 router.get('/',authController.protectRoute, viewController.getSite);
 router.get('/me', authController.protectRoute, viewController.me);
 router.get('/login',  viewController.login);
+router.get('/register', viewController.register)
 
 
 module.exports = router;
