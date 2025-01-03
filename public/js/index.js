@@ -55,7 +55,8 @@ if(formPost){
 
             const data = await res.json();
 
-            console.log(data);
+            if(data.status === 'sucess') alert('SUCESS SAVED')
+            else alert('Somethin wroong');
 
         }catch(err){
           

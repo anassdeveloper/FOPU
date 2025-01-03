@@ -25,7 +25,7 @@ body{
     font-family: var(--main-font);
     font-optical-sizing: auto;
     font-style: normal;
-    background: hsla(33, 100%, 53%, 1);
+    /* background: hsla(33, 100%, 53%, 1);
 
 background: linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
 
@@ -33,7 +33,7 @@ background: -moz-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%
 
 background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 100%, 68%, 1) 100%);
 
-filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", endColorstr="#FFF95B", GradientType=1 );
+filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", endColorstr="#FFF95B", GradientType=1 ); */
 }
 
 
@@ -60,7 +60,6 @@ input, textarea{
     height: 5rem;
     width: 5rem;
     border-radius: 50%;
-    border: 1px solid orange;
     overflow: hidden;
 }
 .header_section--userphoto{height: 100%; width: 100%;}
@@ -127,7 +126,7 @@ input, textarea{
     font-size: 3.2rem;
     margin-bottom: 2rem;
 }
-.form_label{
+.form_label--photo{
     font-size: 2.2rem;
     text-align: center;
     background-color: #ccc;
@@ -185,7 +184,7 @@ input, textarea{
     margin-bottom: 1.4rem;
 }
 .card_post{
-    background-color: #1A8AD6;
+    border:2px solid #1A8AD6;
     border-radius: 2.25rem;
     overflow: hidden;
 }
@@ -228,11 +227,11 @@ input, textarea{
 .card_post--name{
     font-size: 1.7rem;
     font-weight: bold;
-    color: #000000;
+    color: #1A8AD6;
 }
 .card_post--time{
     display: inline-block;
-    color: #ffffff;
+    color: #444;
     font-size: 1.3rem;
     font-weight: 100;
     margin-bottom: .82rem;
