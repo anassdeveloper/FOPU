@@ -66,6 +66,32 @@ exports.newuser = catchAsync(async(req, res, next) => {
      });
 });
 
+exports.updateUserInfo = catchAsync(async (req, res, next) => {
+   const { id } = req.params;
+   const { name, email, bio } = req.body;
+
+   console.log(name, email, bio);
+
+   
+
+   const user = await User.findOneAndUpdate({_id: id}, {
+    name,
+    email,
+    bio
+   });
+
+   if(req.file.photo){
+      user.photo = req.file.photo;
+      user.save({ validateBeforeSave: false });
+   }
+
+   res.status(200).json({
+    status: 'success',
+    data: user
+   });
+});
+
+
 const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {

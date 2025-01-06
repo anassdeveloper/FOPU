@@ -82,7 +82,7 @@ input, textarea{
 
 
 .box_back {
-    
+    z-index: 10;
     position: absolute;
     top: 0;
     left: 0;
@@ -266,21 +266,120 @@ input, textarea{
     padding: 1rem;
 }
 
-.logout_box {
+.box_setting{
     position: absolute;
-    top: 2rem;
-    right: 2rem;
-    font-size: 2.4rem;
-    background-color: orange;
-
-    padding: 1.33rem;
-    text-align: center;
+    top: 1rem;
+    right: 1.25rem;
+    color: #ccc;
+    font-size: 2.8rem;
+    z-index: 1;
+}
+.box_setting i {
     cursor: pointer;
-    transition: all .3s;
+    transition: all .3s ease;
+}
+.box_setting:hover i {
+    color: white;
+    transform: scale(1.1);}
+/* __________ ACCOUNT PAGE ____________ */
+
+.account{
+    position: relative;
+    background-color: blue;
+    width: 100vw;
+    height: 100vh;
+    max-width: 114rem;
+
+    margin: 0 auto;
+}
+.account_header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.75rem;
+    border-bottom: 1px solid orange;
+    text-align: center;
 }
 
-.logout_box:hover{
-    background-color: orangered;
-    transform: scale(1.08);
+.account_header--photobox{
+    height: 15rem;
+    width: 15rem;
+    border: .5rem solid white;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 2.4rem;
+}
+
+.account_header--photo{
+    width: 100%;
+}
+.account_header--info{
+    line-height: 1;
+    margin-bottom: 3.2rem;
+} 
+.account_header--name{
+    font-size: 3.2rem;
+}
+.account_header--username{
+    font-size: 2.4rem;
+    text-align: center;
     color: #ccc;
+}
+
+.account_header--text{
+    font-size: 1.6rem;
+    max-width: 70%;
+    margin: .9rem auto;
+    color: #cccccc;
+    font-weight: 200;
+    text-shadow: .1rem .1rem black;
+}
+
+
+.account_form{
+   display: none;
+   padding: 5rem;
+   background-color: #ccc;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   border-radius: 2rem;
+   box-shadow: 1rem 1rem 1rem rgba(0,0,0, .1)
+}
+.account_form--group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.6rem;
+}
+.account_form--label img{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+.account_form--remove{
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2.4rem;
+}
+.account_form--remove i {
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.account_form--remove:hover i {
+    transform: scale(1.1);
+    color: red;
+}
+
+.account_form--title{
+   font-size: 2.4rem;
+   margin-bottom: 2.4rem;
+}
+
+.account_form--input{
+    font-size: 1.66rem;
+    padding: 1rem;
+    border-radius: 1rem;
 }

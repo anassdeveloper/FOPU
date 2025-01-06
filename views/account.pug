@@ -1,12 +1,39 @@
 extends base 
 
-
-
 block page 
     .box_back 
         a.link--back(href='/') 
             img.back--image(src='/photos/icons/back.png' height="20rem")
-    h2 HELLO TO YOUR ACCOUNT
-
-    .logout_box 
-        span Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    .box_setting 
+        span.box_setting--icon <i class="fa-solid fa-gear"></i>
+    main.account 
+        header.account_header 
+            picture.account_header--photobox 
+                img.account_header--photo(src=user.photo alt=`Photo of ${user.name}`)
+            .account_header--info 
+                strong.account_header--name= user.name
+                p.account_header--username= user.email
+                p.account_header--text= user.bio
+            .account_header--btnbox
+                button.account_header--btn Edit
+                button.logout.account_header--btn 
+                    span Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        section.account_content Empty
+    
+        form.account_form(data-user=`${user._id}`)
+            span.account_form--remove <i class="fa-solid fa-xmark"></i>
+            h3.account_form--title Update Your info here 
+            .account_form--group 
+                label.account_form--label(for="name") Name :
+                input.account_form--input(type="text" name='name' value=`${user.name}`)
+            .account_form--group 
+                label#name.account_form--label(for="email") Address Email :
+                input#email.account_form--input(type="email" name='email' value=`${user.email}`)
+            .account_form--group 
+                label.account_form--label(for="photo_update")
+                    img(src=user.photo)
+                input#photo_update.account_form--file(type="file" name='photo')
+            .account_form--group 
+                textarea#bio(name="bio", cols="30", rows="10")= user.bio 
+            .account_form--group 
+                input.account_form--btn(type="submit" value='up date')
