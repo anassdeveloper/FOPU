@@ -1,6 +1,5 @@
-extends base 
-
-block page 
+extends base
+block  page 
     .box_back 
         a.link--back(href='/') 
             img.back--image(src='/photos/icons/back.png' height="20rem")
@@ -18,8 +17,7 @@ block page
                 button.account_header--btn Edit
                 button.logout.account_header--btn 
                     span Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        section.account_content Empty
-    
+        section.account_content empty 
         form.account_form(data-user=`${user._id}`)
             span.account_form--remove <i class="fa-solid fa-xmark"></i>
             h3.account_form--title Update Your info here 

@@ -1,3 +1,7 @@
+-   var pattern = /[\u0600-\u06FF\u0750-\u077F]/              
+-   const isArabic = txt => pattern.test(txt)
+
+
 main.global_posts 
     each post in posts 
         .card_post
@@ -7,11 +11,12 @@ main.global_posts
                 .card_box 
                     img.card_box--img(src= post.userPhoto)
                 .card_box.card_box--text 
-                    h3.card_post--name= post.username
+                    h3.card_box--name= post.username
                     span.card_post--time depuis 6min
-                    p.card_post--parag= post.title
-                .card_box.card_box--emoji 
-                    span 🎃
-                    span ASS 
-            
+                    if(isArabic(post.title))
+                        p.card_post--parag--arabic= post.title
+                    else 
+                        p.card_post--parag= post.title
+
+
     

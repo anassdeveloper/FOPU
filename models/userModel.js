@@ -44,7 +44,11 @@ const userSchema = new mongoose.Schema({
    },
    passwordResetToken: String,
    passwordResetExpires: Date,
-   bio: String
+   bio: {
+      type: String,
+      default: 'We peaple of FOPU 💥'
+   },
+   posts: Array
 });
 
 // Db bghina nchafro password a7ssan blassa hiya Model o mankhdmoch f controllers

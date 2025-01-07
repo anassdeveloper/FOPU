@@ -64,7 +64,10 @@ exports.newuser = catchAsync(async(req, res, next) => {
          token: createToken(newUser._id),
          data: newUser
      });
+
 });
+
+
 
 exports.updateUserInfo = catchAsync(async (req, res, next) => {
    const { id } = req.params;

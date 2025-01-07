@@ -7,7 +7,7 @@ header.header_section
             a.header_section--link(href='/register') Sign Up 
         else 
             .header_section--user 
-                a.header_section--username(href="/me")= user.name
+                a.header_section--username(href="/me")= user.name.split(' ')[0]
                 figure.header_section--photo 
                     img.header_section--userphoto(src=user.photo)
                 

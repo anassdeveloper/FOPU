@@ -36,6 +36,20 @@ background: -webkit-linear-gradient(90deg, hsla(33, 100%, 53%, 1) 0%, hsla(58, 1
 filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", endColorstr="#FFF95B", GradientType=1 ); */
 }
 
+.success{
+    background-color: rgb(8, 225, 8);
+    
+}
+.show-msg{
+    display: block;
+    padding: 1.23rem 2.34rem;
+    font-size: 2.4rem;
+    text-align: center;
+    color: #fff;
+  }
+.error{
+    background-color: red;
+}
 
 input, textarea{
     border: none;
@@ -232,16 +246,19 @@ input, textarea{
 .card_post--time{
     display: inline-block;
     color: #444;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 100;
     margin-bottom: .82rem;
 }
-.card_post--parag{
+.card_post--parag, .card_post--parag--arabic{
     font-size: 1.56rem;
     padding-left: .92rem;
     color: #0B3B5B;
+    letter-spacing: 1.5px;
 }
-
+.card_post--parag--arabic{
+    direction: rtl;
+}
 /* .card_box--emoji{
     padding: .5rem;
     font-size: 1.78rem;

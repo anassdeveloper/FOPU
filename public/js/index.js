@@ -2,9 +2,30 @@ const loginForm = document.querySelector('.form_login');
 const formPost = document.querySelector('.create-post_form');
 const formRegister = document.querySelector('.form_register');
 
-// 'https://fopu.onrender.com'--
+// 'https://fopu.onrender.com'--'https://fopu.onrender.com'
 const local_url = 'http://localhost:3000';
 const prod_url = 'https://fopu.onrender.com';
+
+const showMsg = (type, message, emoji) => {
+    let html;
+    switch(type){
+        case 'success':
+            html =  `<b class='show-msg ${type}'>${message} ${emoji}</b>`;
+            break;
+        case 'error':
+            html =`<b class='show-msg ${type}'>${message} ${emoji}</b>`;
+            break;
+        default : 
+            html = `<b class='show-msg'>${message} ${emoji}</b>`
+    }
+
+    document.querySelector('body').insertAdjacentHTML('afterbegin', html);
+
+    setTimeout(e => {
+        document.querySelector('body')
+        .removeChild(document.body.firstElementChild);
+    }, 5000)
+}
 
 if(loginForm){
     loginForm.addEventListener('submit', e => {
@@ -26,10 +47,11 @@ if(loginForm){
         }).then(res => res.json())
         .then(data => {
             if(data.status === 'success'){
-                alert('You successfully login');
+                showMsg('success', 'You successfully login', '😘');
+
                 return location.assign('/');
             }else if (data.status === 'fail'){
-                alert(data.message);
+                showMsg('error', 'Please check your email or password', '😢')
             }
         })
         .catch(err => console.log(err));
@@ -56,7 +78,7 @@ if(formPost){
 
             const data = await res.json();
 
-            if(data.status === 'sucess') alert('SUCESS SAVED')
+            if(data.status === 'success') showMsg('success', 'Your post saved ', '👌')
             else alert('Somethin wroong');
 
         }catch(err){
@@ -67,8 +89,8 @@ if(formPost){
 
 if(document.getElementById('photo')){
     document.getElementById('photo').addEventListener('change', e => {
-        document.querySelector('.form_label').classList.add('saved');
-        document.querySelector('.form_label').innerHTML = `photo saved <i class="fa-solid fa-check"></i>`
+        document.querySelector('.form_label--photo').classList.add('saved');
+        document.querySelector('.form_label--photo').innerHTML = `photo saved <i class="fa-solid fa-check"></i>`
     })
 }
 
@@ -83,12 +105,17 @@ if(formRegister){
             });
 
             const result = await res.json();
-            console.log(result);
+           
             
-            if(result.status === 'success') location.reload(true);
+            if(result.status === 'success') {
+                showMsg('success', 'your account created ', '🔥')
+                location.assign('/');
+            }else{
+                showMsg('error', 'Somthing wrong', '⛔');
+            }
 
          }catch(err){
-            console.log(err);
+            showMsg('error', err.message, '⛔');
             alert('ERROR')
          }
     })
@@ -106,6 +133,7 @@ if(document.querySelector('.logout')){
             const result = await res.json();
             
             if(result.status === "success") {
+                showMsg('sucess', 'Your logout successfully', '😒')
                 location.assign('/');
             }
          }
@@ -143,15 +171,23 @@ if(document.getElementById('photo_update')){
 }
 
 if(document.querySelector('.account_form')){
-    document.querySelector('.account_form').onsubmit = async e => {
-        e.preventDefault();
-        const fm = new FormData(document.querySelector('.account_form'));
-        const res = await fetch(`${prod_url}/api/v1/users/${e.target.dataset.user}`, {
-            method: 'PATCH',
-            body: fm
-        });
-        const msg = await res.json();
-
-        console.log(msg);
+    try{
+        document.querySelector('.account_form').onsubmit = async e => {
+            e.preventDefault();
+            const fm = new FormData(document.querySelector('.account_form'));
+            const res = await fetch(`${prod_url}/api/v1/users/${e.target.dataset.user}`, {
+                method: 'PATCH',
+                body: fm
+            });
+            const msg = await res.json();
+            if(msg.status === 'success'){
+                showMsg('success', 'your account updated', '👀')
+            }else{
+                showMsg('error', 'somthing wrong', '👀')
+            }
+            console.log(msg);
+        }
+    }catch(err){
+        console.log(err);
     }
 }

@@ -1,4 +1,5 @@
 const Post = require('../models/postModel');
+const User = require('../models/userModel');
 const catchAsync = require('../utils/catchAsync');
 
 
@@ -19,6 +20,9 @@ exports.getOnePost = (req, res, next) => {
 exports.createNewPost = catchAsync(async (req, res, next) => {
     const { title, userId, userPhoto, username } = req.body;
 
+    const user = await User.findById({_id: userId});
+    user.posts.push({title, userId,photo: req.file.photo });
+    await user.save({ validateBeforeSave: false });
     const db = await Post.create({
         title, userId, userPhoto, username,
         photo: req.file.photo
