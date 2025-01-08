@@ -8,7 +8,13 @@ exports.login = (req, res, next) => {
 }
 
 exports.getSite = catchAsync(async (req, res, next) => {
-    const posts = await Post.find();
+    let posts;
+    console.log(req.user)
+    if(req.user.role === 'admin'){
+      posts = await Post.find();
+    }else{
+        posts = await Post.find({status: 'public'});
+    }
     res.status(200).render('base', {
         title: 'HOME',
         posts

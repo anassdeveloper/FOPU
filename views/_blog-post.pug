@@ -5,8 +5,8 @@
 main.global_posts 
     each post in posts 
         .card_post
-            picture.card_post--photo 
-               img.card_post--img(src= post.photo alt='POST PHOTO') 
+            figure.card_post--photo 
+                img.card_post--img(src= post.photo alt='POST PHOTO') 
             .card_post--content 
                 .card_box 
                     img.card_box--img(src= post.userPhoto)

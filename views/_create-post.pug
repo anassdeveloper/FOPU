@@ -6,5 +6,10 @@ section.create-post
         .form_group 
             label.form_label--photo(for="photo") choose photo <i class="fa-regular fa-image"></i>
             input#photo.form_input(type='file' name="photo" accept="/image*")
+        .form_group 
+            select#status.form_select(name="status") 
+                 option(value="public") Public 
+                 option(value="private") Private
+                
         .form_group
-            button.form_input--btn(type='submit') create <i class="fa-solid fa-arrow-up-from-bracket"></i>
+            button.btn--b.form_input--btn(type='submit') create <i class="fa-solid fa-arrow-up-from-bracket"></i>

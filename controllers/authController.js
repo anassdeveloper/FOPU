@@ -131,3 +131,26 @@ exports.logout = (req, res, next) => {
         res.status(200).json({status: "success"});
     
 }
+
+
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+    const user = await User.findById(req.user._id).select('+password -posts');
+
+    if(!user) return next(new AppError('user Not found', 403));
+
+    if(!(await user.correctPassword(req.body.currentPassword, user.password))){
+        return next(new AppError('Password incorrect', 401))
+    }
+
+    user.password = req.body.newPassword;
+    user.passwordConfirm = req.body.confirmPassword;
+
+    await user.save();
+
+    res.status(200).json({
+        status: 'success',
+        message: 'password Changed'
+    })
+
+})

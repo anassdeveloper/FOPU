@@ -146,9 +146,19 @@ if(document.querySelector('.account_form--remove')){
         const btn = e.target.closest('.account_form--remove').classList.value;
         if(btn === 'account_form--remove'){
             document.querySelector('.account_form').style.display = 'none';
+            document.querySelector('.account_form--password').style.display = 'none';
         }
     })
 }
+
+if(document.querySelector('.account_form--rm')){
+    document.querySelector('.account_form--rm').addEventListener('click', e => {
+        const btn = e.target.closest('.account_form--rm').classList.value;
+        if(btn === 'account_form--rm'){
+            document.querySelector('.account_form--password').style.display = 'none';
+        }
+    })
+};
 
 if(document.querySelector('.box_setting--icon')){
     document.querySelector('.box_setting--icon').addEventListener('click', e => {
@@ -190,4 +200,36 @@ if(document.querySelector('.account_form')){
     }catch(err){
         console.log(err);
     }
+}
+
+
+if(document.querySelector('.btn_edit')){
+    document.querySelector('.btn_edit').addEventListener('click', e => {
+        document.querySelector('.account_form--password').style.display = 'block';
+    })
+}
+
+
+if(document.querySelector('.account_form--password')){
+    document.querySelector('.account_form--password').addEventListener('submit', e => {
+        e.preventDefault();
+        const currentPassword = document.getElementById('current-pass').value;
+        const newPassword = document.getElementById('new-pass').value;
+        const confirmPassword = document.getElementById('confrim-pass').value;
+
+        fetch(`${prod_url}/auth/update-password`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                currentPassword,
+                newPassword,
+                confirmPassword
+            })
+        }).then(res => res.json()).then(result => {
+            if(result.status === 'success') showMsg('success', result.message, "👀")
+            else showMsg('error', 'current password incorrect', "🙄")
+        }).catch(err => console.log)
+    })
 }

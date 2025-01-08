@@ -14,6 +14,7 @@ router.post('/newuser',upload.single('photo'),
 );
 
 router.post('/forgetpassword', authController.forgetPassword);
+router.patch('/update-password',authController.protectRoute, authController.updatePassword);
 
 module.exports = router;
 

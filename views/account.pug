@@ -14,7 +14,7 @@ block  page
                 p.account_header--username= user.email
                 p.account_header--text= user.bio
             .account_header--btnbox
-                button.account_header--btn Edit
+                button.btn_edit.account_header--btn Edit password
                 button.logout.account_header--btn 
                     span Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
         section.account_content empty 
@@ -35,3 +35,16 @@ block  page
                 textarea#bio(name="bio", cols="30", rows="10")= user.bio 
             .account_form--group 
                 input.account_form--btn(type="submit" value='up date')
+
+
+
+        form.account_form--password(action="")
+            span.account_form--rm <i class="fa-solid fa-xmark"></i>
+            .form_group 
+                input#current-pass(type="password" placeholder='Current password' name='currentpassword')
+            .form_group 
+                input#new-pass(type="password" placeholder='New password' name='newpassword')
+            .form_group 
+                input#confrim-pass(type="password" placeholder='Confirm password' name='confirmpassword')
+            .form_group 
+                input(type="submit" value='update') 
