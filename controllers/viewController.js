@@ -13,8 +13,9 @@ exports.getSite = catchAsync(async (req, res, next) => {
       posts = await Post.find();
     }else{
         posts = await Post.find({userId: req.user._id});
-        posts.push(await Post.find({ status: 'public'}));
+        posts = posts.concat(await Post.find({ status: 'public'}))
     }
+    
     res.status(200).render('base', {
         title: 'HOME',
         posts
