@@ -1,6 +1,9 @@
 const loginForm = document.querySelector('.form_login');
 const formPost = document.querySelector('.create-post_form');
 const formRegister = document.querySelector('.form_register');
+const postBx = Array.from(document.querySelectorAll('.card__bx'));
+
+console.log(postBx)
 
 // 'https://fopu.onrender.com'--'https://fopu.onrender.com'
 const local_url = 'http://localhost:3000';
@@ -232,4 +235,37 @@ if(document.querySelector('.account_form--password')){
             else showMsg('error', 'current password incorrect', "🙄")
         }).catch(err => console.log)
     })
+}
+
+
+if(postBx){
+    postBx.forEach(el => {
+        el.addEventListener('click', e => {
+          const post = JSON.parse(e.currentTarget.dataset.post);
+
+          let html = `<div class='show__post--card'>
+               <h3 class='show__post--title'>${post.title}</h3>
+               <picture class='show__post--photo'>
+                   <img class='show__post--image' src='${post.photo}'>
+               </picutre>
+
+          <div>`;
+          document.querySelector('.show__post').classList.add('active');
+          document.getElementById('show__post--content').insertAdjacentHTML('afterbegin', html);
+        })
+    });
+}
+
+if(document.querySelector('.account_form--rmpost')){
+
+    document.querySelector('.account_form--rmpost').onclick = e => {
+        
+        const btn = e.target.closest('.account_form--rmpost');
+        
+        if(btn.classList.value === 'account_form--rmpost'){
+            console.log(true);
+            document.querySelector('.show__post').classList.remove('active');
+            document.getElementById('show__post--content').removeChild(document.querySelector('.show__post--card'));
+        }
+    }
 }

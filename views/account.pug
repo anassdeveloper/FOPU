@@ -1,4 +1,9 @@
 extends base
+
+mixin post(obj)
+    .card__bx(data-post=`${JSON.stringify(obj)}`)
+        figure.card__bx--photo 
+            img.card__bx--image(src=obj.photo)
 block  page 
     .box_back 
         a.link--back(href='/') 
@@ -17,7 +22,9 @@ block  page
                 button.btn_edit.account_header--btn Edit password
                 button.logout.account_header--btn 
                     span Logout <i class="fa-solid fa-arrow-right-from-bracket"></i>
-        section.account_content empty 
+        section.account_content
+            each p in user.posts 
+                +post(p)
         form.account_form(data-user=`${user._id}`)
             span.account_form--remove <i class="fa-solid fa-xmark"></i>
             h3.account_form--title Update Your info here 
@@ -48,3 +55,10 @@ block  page
                 input#confrim-pass(type="password" placeholder='Confirm password' name='confirmpassword')
             .form_group 
                 input(type="submit" value='update') 
+
+
+        article.show__post
+            span.account_form--rmpost <i class="fa-solid fa-xmark"></i>
+            #show__post--content
+        
+            

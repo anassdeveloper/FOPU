@@ -9,11 +9,11 @@ exports.login = (req, res, next) => {
 
 exports.getSite = catchAsync(async (req, res, next) => {
     let posts;
-    console.log(req.user)
     if(req.user.role === 'admin'){
       posts = await Post.find();
     }else{
-        posts = await Post.find({status: 'public'});
+        posts = await Post.find({userId: req.user._id});
+        posts.push(await Post.find({ status: 'public'}));
     }
     res.status(200).render('base', {
         title: 'HOME',

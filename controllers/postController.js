@@ -6,11 +6,12 @@ const catchAsync = require('../utils/catchAsync');
 
 exports.getAllPosts = catchAsync(async (req, res, next) => {
     let db;
-    console.log(req.user)
+    
     if(req.user.role === 'admin'){
       db = await Post.find();
     }else{
-        db = await Post.find({status: 'public'});
+        db = await Post.find({userId: req.user._id});
+        db.push(await Post.find({ status: 'public'}));
     }
     res.status(200).json({
         status: "success",
