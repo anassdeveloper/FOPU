@@ -39,3 +39,9 @@ exports.createNewPost = catchAsync(async (req, res, next) => {
         data: db
     });
 });
+
+
+exports.deletePost = catchAsync(async(req, res, next) => {
+    const delPost = await Post.findByIdAndDelete(req.params.id);
+    res.status(200).json({ status: 'success', del: null});
+});

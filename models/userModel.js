@@ -48,6 +48,11 @@ const userSchema = new mongoose.Schema({
       type: String,
       default: 'We peaple of FOPU 💥'
    },
+   active: {
+      type: Boolean,
+      default: true,
+      select: false
+   },
    posts: Array
 });
 
@@ -61,6 +66,11 @@ userSchema.pre('save', async function(next){
    if(!this.isModified('password')) return next();
    this.password = await hashPass.hash(this.password, 12);
    this.passwordConfirm = undefined;
+});
+
+userSchema.pre(/^find/, function(next){
+   this.find({active: { $ne: false}});
+   next();
 });
 
 userSchema.methods.correctPassword = async function(condidatePassword, userPassword){

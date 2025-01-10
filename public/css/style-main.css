@@ -43,7 +43,10 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", en
     
 }
 .show-msg{
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     z-index: 100;
     display: block;
     padding: 1.23rem 2.34rem;
@@ -219,11 +222,37 @@ input, textarea{
     margin-bottom: 1.4rem;
 }
 .card_post{
+    position: relative;
     border:2px solid #1A8AD6;
     border-radius: 2.25rem;
     overflow: hidden;
 }
 
+.card_post--btn{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    color: blue;
+    font-size: 2.4rem;
+    border: none;
+    outline: none;
+   
+}
+.card_post--list{
+    position: absolute;
+    top: 2rem;
+    right: 1.34rem;
+    background-color: #ccc;
+    border-radius: .3rem;
+}
+.card_post--item{
+    font-size: 1.45rem;
+    color: #fff;
+    padding: .59rem 1.68rem;
+    cursor: pointer;
+}
+.card_post--item:first-child{border-bottom: 1px solid #fff;}
 .card_post--photo{
     width: 100%;
     max-height: 35rem;

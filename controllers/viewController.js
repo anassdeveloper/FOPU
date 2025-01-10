@@ -34,3 +34,11 @@ exports.register = (req, res, next) => {
         title: "New Account "
     } )
 }
+
+exports.updatePost = catchAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id);
+    res.status(200).render('update-post', {
+        title: 'UpDate',
+        post
+    })
+})

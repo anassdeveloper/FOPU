@@ -6,7 +6,9 @@ const authController = require('../controllers/authController');
 router.get('/',authController.protectRoute, viewController.getSite);
 router.get('/me', authController.protectRoute, viewController.me);
 router.get('/login',  viewController.login);
-router.get('/register', viewController.register)
+router.get('/register', viewController.register);
+
+router.get('/update-post/:id', viewController.updatePost);
 
 
 module.exports = router;

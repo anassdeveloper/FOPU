@@ -7,7 +7,7 @@ const uploadToCloud = require('../utils/cloudinary');
 
 router.get('/',userController.getAllUsers);
 router.get('/:id',authController.protectRoute, userController.getOneUser);
-router.patch('/:id',
+router.patch('/update-currentuser',
     authController.protectRoute,
     upload.single('photo'),
     uploadToCloud('400', '400'),

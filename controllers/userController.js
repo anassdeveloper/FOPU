@@ -6,6 +6,17 @@ const sharp = require('sharp');
 const AppError = require('../utils/appError');
 
 
+// filter body obj from unique fileds
+const filterObj = (obj, ...allowedFields) => {
+    const newObj = {};
+    Object.keys(obj).forEach(el => {
+        if(allowedFields.includes(el)) newObj[el] = obj[el];
+    });
+    return newObj;
+};
+
+
+
 const createToken = userID => {
     const token = jwt.sign({id: userID}, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN
@@ -70,28 +81,26 @@ exports.newuser = catchAsync(async(req, res, next) => {
 
 
 exports.updateUserInfo = catchAsync(async (req, res, next) => {
-   const { id } = req.params;
-   const { name, email, bio } = req.body;
-
-   console.log(name, email, bio);
-
+   if(req.body.password || req.body.passwordConfirm){
+      return next(new AppError('This route is not for password updates, Please use /update-password.', 400))
+   }
+   const id = req.user._id;
+   
+   if(req.file.photo) req.body.photo = req.file.photo;
    
 
-   const user = await User.findOneAndUpdate({_id: id}, {
-    name,
-    email,
-    bio
-   });
+    const filterBody = filterObj(req.body, 'name', 'email', 'bio', 'photo');
 
-   if(req.file.photo){
-      user.photo = req.file.photo;
-      user.save({ validateBeforeSave: false });
-   }
+    const user = await User.findByIdAndUpdate(id, filterBody, {new: true, runValidators: true})
+   
+    if(!user) return next('user not found', 404);
 
-   res.status(200).json({
-    status: 'success',
-    data: user
-   });
+    res.status(200).json({
+      status: 'success',
+       data: user
+    });
+
+   
 });
 
 
@@ -132,3 +141,13 @@ exports.resizeUserPhoto = (req, res, next) =>{
 }
 
 exports.upDateUserPhoto = upload.single('photo');
+
+
+exports.deleteMe = catchAsync(async(req, res, next)=> {
+    await User.findByIdAndUpdate(req.user._id, {active: false});
+
+    res.status(204).json({
+        status: 'success',
+        data: null
+    });
+})

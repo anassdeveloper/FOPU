@@ -49,7 +49,7 @@ exports.protectRoute = async (req, res, next) => {
     
 
     if(!token) 
-        return next(new AppError('Please login to your account', 401));
+        return res.status(404).render('home');
 
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 

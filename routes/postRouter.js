@@ -13,5 +13,7 @@ router.post('/create-new-post',
     uploadToCloud(null, null),
     postController.createNewPost);
 
+router.delete('/del/:id', authController.protectRoute, postController.deletePost)
+
 
 module.exports = router;
