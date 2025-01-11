@@ -7,9 +7,10 @@ main.global_posts
         .card_post
             - if(user._id == post.userId || user.role === 'admin') 
                 button.card_post--btn(data-id= post._id) <i class="fa-solid fa-ellipsis-vertical"></i>
-            figure.card_post--photo 
             - if(post.photo)
-                img.card_post--img(src= post.photo alt='POST PHOTO') 
+                figure.card_post--photo 
+                    img.card_post--img(src= post.photo alt='POST PHOTO')
+            - else span  
             .card_post--content 
                 .card_box 
                     img.card_box--img(src= post.userPhoto)
@@ -19,7 +20,6 @@ main.global_posts
                     if(isArabic(post.title))
                         p.card_post--parag--arabic= post.title
                     else 
-                        p.card_post--parag= post.title
-
-
+                        p.card_post--parag= post.title 
+            
     

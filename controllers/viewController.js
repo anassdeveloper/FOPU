@@ -10,7 +10,7 @@ exports.login = (req, res, next) => {
 exports.getSite = catchAsync(async (req, res, next) => {
     let posts;
     if(req.user.role === 'admin'){
-      posts = await Post.find();
+      posts = await Post.find({}, null, {sort: 'createdAt'});
     }else{
         posts = await Post.find({userId: req.user._id});
         posts = posts.concat(await Post.find({ status: 'public'}))

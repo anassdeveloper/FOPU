@@ -3,7 +3,7 @@ const formPost = document.querySelector('.create-post_form');
 const formRegister = document.querySelector('.form_register');
 const postBx = Array.from(document.querySelectorAll('.card__bx'));
 
-console.log(postBx)
+
 
 // 'https://fopu.onrender.com'--'https://fopu.onrender.com';
 
@@ -273,19 +273,23 @@ if(document.querySelector('.account_form--rmpost')){
 }
 
 
+
 if(document.querySelectorAll('.card_post--btn')){
     Array.from(document.querySelectorAll('.card_post--btn')).forEach(btn => {
         btn.addEventListener('click', e => {
-            if(document.querySelector('.card_post ul')){
-                return document.querySelector('.card_post')
-                .removeChild(document.querySelector('.card_post ul'))
+            if(e.currentTarget.parentElement.firstElementChild.className === 'card_post--list'){
+                 return e.currentTarget.parentElement.removeChild(e.currentTarget.parentElement.firstElementChild)
             }
+            removeList();
             let b = e.target.closest('.card_post--btn');
+            // e.currentTarget.parentElement
+            // .removeChild(document.querySelector('.card_post ul'))
             let html = `<ul class='card_post--list'>
                <li class='card_post--item'><a href='#'>Edit <i class="fa-solid fa-pen-to-square"></i></a></li>
                <li class='card_post--item del-post' data-id="${b.dataset.id}">Delete post <i class="fa-solid fa-trash"></i></li>
             </ul>`;
-            b.parentElement.insertAdjacentHTML('afterbegin', html);
+
+            e.currentTarget.parentElement.insertAdjacentHTML('afterbegin', html);
             Array.from(document.querySelectorAll('.del-post')).forEach(li => {
                 li.addEventListener('click', e => {
                     removePostFromDB(e.target.dataset.id);
@@ -306,4 +310,15 @@ async function removePostFromDB(id){
     }catch(err){
        console.log(err);
     }
+}
+
+
+
+
+function removeList(){
+    Array.from(document.querySelectorAll('.card_post')).forEach(el => {
+        if(el.firstChild.className === 'card_post--list'){
+            el.removeChild(el.firstElementChild);
+        }
+    })
 }

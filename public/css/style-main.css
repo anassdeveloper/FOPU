@@ -222,9 +222,12 @@ input, textarea{
     margin-bottom: 1.4rem;
 }
 .card_post{
+    width: 100%;
+    max-height: 45rem;
     position: relative;
-    border:2px solid #1A8AD6;
     border-radius: 2.25rem;
+    padding-bottom: 1.63rem;
+    box-shadow: .2rem .3rem 1.23rem rgba(0, 0, 0, 0.356);
     overflow: hidden;
 }
 
@@ -237,7 +240,13 @@ input, textarea{
     font-size: 2.4rem;
     border: none;
     outline: none;
+    background-color: transparent;
+    transition: all .3s ease;
    
+}
+.card_post--btn:hover{
+    transform: scale(1.1);
+    color: #1A8AD6;
 }
 .card_post--list{
     position: absolute;
@@ -245,6 +254,7 @@ input, textarea{
     right: 1.34rem;
     background-color: #ccc;
     border-radius: .3rem;
+    list-style: none;
 }
 .card_post--item{
     font-size: 1.45rem;
@@ -253,6 +263,7 @@ input, textarea{
     cursor: pointer;
 }
 .card_post--item:first-child{border-bottom: 1px solid #fff;}
+
 .card_post--photo{
     width: 100%;
     max-height: 35rem;
@@ -304,7 +315,7 @@ input, textarea{
     margin-bottom: .82rem;
 }
 .card_post--parag, .card_post--parag--arabic{
-    font-size: 1.56rem;
+    font-size: 1.66rem;
     padding-left: .92rem;
     color: #0B3B5B;
     letter-spacing: 1.5px;
