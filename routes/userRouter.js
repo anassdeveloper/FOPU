@@ -5,6 +5,7 @@ const authController = require('../controllers/authController');
 const upload = require('../utils/multer');
 const uploadToCloud = require('../utils/cloudinary');
 
+router.get('/test-query', userController.testQuery);
 router.get('/',userController.getAllUsers);
 router.get('/:id',authController.protectRoute, userController.getOneUser);
 router.patch('/update-currentuser',

@@ -35,6 +35,9 @@ const showMsg = (type, message, emoji) => {
 if(loginForm){
     loginForm.addEventListener('submit', e => {
         e.preventDefault();
+        const button = document.querySelector(`.${e.target.className} .btn--b`);
+        
+        createLoadingBtn(button);
 
         const email = document.getElementById('email').value;
         const pass = document.getElementById('password').value;
@@ -53,13 +56,13 @@ if(loginForm){
         .then(data => {
             if(data.status === 'success'){
                 showMsg('success', 'You successfully login', '😘');
-
                 return location.assign('/');
             }else if (data.status === 'fail'){
                 showMsg('error', 'Please check your email or password', '😢')
             }
+           
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)).finally(msg =>  removeLoadingBtn(button, 'submit'));
     })
 }
 
@@ -67,6 +70,10 @@ if(formPost){
     formPost.addEventListener('submit', async (e) => {
         try{
             e.preventDefault();
+            let button = document.querySelector(`.${e.target.className} .btn--b`);
+            createLoadingBtn(button);
+            
+            
             const fm = new FormData(formPost);
             const user = JSON.parse(formPost.dataset.user);
 
@@ -85,7 +92,7 @@ if(formPost){
 
             if(data.status === 'success') showMsg('success', 'Your post saved ', '👌')
             else alert('Somethin wroong');
-
+            removeLoadingBtn(button, "Create");
         }catch(err){
           
         }
@@ -103,6 +110,9 @@ if(formRegister){
     formRegister.addEventListener('submit', async  e => {
          try{
             e.preventDefault();
+            const button = document.querySelector(`.${e.target.className} button`);
+            createLoadingBtn(button);
+
             const fm = new FormData(formRegister);
             const res = await fetch(`${prod_url}/auth/newuser`, {
                 method: "POST",
@@ -114,12 +124,14 @@ if(formRegister){
             
             if(result.status === 'success') {
                 showMsg('success', 'your account created ', '🔥')
-                location.assign('/');
+                location.reload(true);
             }else{
                 showMsg('error', 'Somthing wrong', '⛔');
+                removeLoadingBtn(button, 'send');
             }
 
          }catch(err){
+            console.log(err.message)
             showMsg('error', err.message, '⛔');
             alert('ERROR')
          }
@@ -321,4 +333,17 @@ function removeList(){
             el.removeChild(el.firstElementChild);
         }
     })
+}
+
+
+function createLoadingBtn(btn){
+    btn.innerHTML = "";
+    btn.classList.add('lds-dual-ring');
+    btn.disabled = true;
+}
+
+function removeLoadingBtn(btn, html){
+    btn.classList.remove('lds-dual-ring')
+    btn.textContent = html;
+    btn.disabled = false;
 }

@@ -6,13 +6,15 @@ const catchAsync = require('../utils/catchAsync');
 
 exports.getAllPosts = catchAsync(async (req, res, next) => {
     let db;
-    
+    let userId = req.user._id.toString();
+
     if(req.user.role === 'admin'){
       db = await Post.find();
     }else{
-        db = await Post.find({userId: req.user._id});
-        db.push(await Post.find({ status: 'public'}));
+        //db = await Post.find({ status: 'public' }, {userId: req.user._id});
+         db = await Post.find({userId, status: 'public'});
     }
+   
     res.status(200).json({
         status: "success",
         length: db.length,
@@ -45,3 +47,27 @@ exports.deletePost = catchAsync(async(req, res, next) => {
     const delPost = await Post.findByIdAndDelete(req.params.id);
     res.status(200).json({ status: 'success', del: null});
 });
+
+
+
+
+exports.searchPostByQuery = catchAsync(async (req, res, next) => {
+    console.log('HIIII HELLO')
+
+   const queryObj = { ...req.query };
+   // filed ghir msmo7 biha msmo7 biha
+   const excludedFields = ["userId", "__v", "userPhoto"];
+   excludedFields.forEach(el => delete queryObj[el]);
+
+   console.log(queryObj)
+
+   const query = Post.find(queryObj);
+
+   const posts = await query;
+
+   res.status(200).json({
+       status: "success",
+       length: posts.length,
+       data: posts
+   });
+})

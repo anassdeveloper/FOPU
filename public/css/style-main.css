@@ -268,9 +268,21 @@ input, textarea{
     width: 100%;
     max-height: 35rem;
     overflow: hidden;
+    cursor: pointer;
+    transition: all .33s ease;
+}
+.card_post--photo:hover{
+    overflow: visible;
+}
+.card_post--photo:hover img{
+    transform: scale(1.13);
+}
+.card_post--photo:hover + div{
+    opacity: 0;
 }
 .card_post--img{
    width: 100%;
+   transition: inherit;
 }
 
 .card_post--content{
@@ -278,12 +290,12 @@ input, textarea{
    align-items: center;
    gap: 1.2rem;
    padding: .73rem;
-   
+   transition: opacity .3s ease-in-out;
 }
 .card_box { }
 .card_box--img{
-    height: 5.5rem;
-    width: 5.5rem;
+    height: 5.8rem;
+    width: 5.8rem;
     border-radius: 50%;
 }
 .card_box--emoji{
@@ -301,9 +313,10 @@ input, textarea{
 .card_box--text{
     flex: 1;
     line-height: 1;
+    padding: 1rem 0;
 }
-.card_post--name{
-    font-size: 1.7rem;
+.card_box--name{
+    font-size: 1.83rem;
     font-weight: bold;
     color: #1A8AD6;
 }
@@ -467,3 +480,37 @@ input, textarea{
     padding: 1rem;
     border-radius: 1rem;
 }
+
+
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 8rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 3.4rem;
+  height: 3.4rem;
+  margin: .4rem;
+  border-radius: 50%;
+  border: .44rem solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

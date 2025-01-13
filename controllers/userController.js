@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const sharp = require('sharp');
 const AppError = require('../utils/appError');
+const { query } = require('express');
 
 
 // filter body obj from unique fileds
@@ -27,7 +28,7 @@ const createToken = userID => {
 
 
 exports.getAllUsers = catchAsync(async(req, res) => {
-    const users = await User.find();
+    const users = await User.find().select('-posts -createdAt -role -__v');
 
     res.cookie('username');
 
@@ -151,3 +152,10 @@ exports.deleteMe = catchAsync(async(req, res, next)=> {
         data: null
     });
 })
+
+
+exports.testQuery = (req, res) => {
+    'http://localhost:3000/api/v1/users/test-query?status=public&userId=2323'
+    console.log(req.query);
+    res.status(502).json({status: 'UNLOCKED', message: 'Developer is work at endpoint'})
+}
