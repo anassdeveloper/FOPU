@@ -1,0 +1,25 @@
+extends base
+
+mixin message(msg)
+    .message 
+        picture.message_photo 
+            img.message_img(src=msg.photo)
+        .message_text 
+            p.message_name= msg.name
+            //- span.message_time 12:30 ⏱
+            p.message_txt= msg.message
+
+
+block page 
+    - let userLocal = {id: user._id, photo: user.photo, name: user.name}
+    section.section_messages
+        header.section_messages--header 
+            h3.section_messages-heading Chat in FOPU 🙄
+        main.section_content
+            .section_content--messages 
+                each msg in messages 
+                    +message(msg)
+            form.chat_form(data-user=`${JSON.stringify(userLocal)}`) 
+                .form_group 
+                    input#input_message(type="text" placeholder='enter message' name='message')
+                    input#input_btn(type="submit" value='send')

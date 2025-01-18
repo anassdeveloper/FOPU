@@ -1,3 +1,4 @@
+const Chat = require('../models/chatModel');
 const catchAsync = require('../utils/catchAsync');
 const Post = require('./../models/postModel');
 
@@ -64,7 +65,11 @@ exports.updatePost = catchAsync(async (req, res, next) => {
         post
     })
 })
+exports.getChat = async  (req, res, next) => {
+    const messages = await Chat.find();
 
+    res.status(200).render('_chat', {title: 'Chat', messages})
+}
 
 function uniq(a) {
     var seen = {};

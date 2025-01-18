@@ -1,6 +1,10 @@
 const dotenv = require('dotenv');
 dotenv.config({path: './config.env'});
 const app = require('./app');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
@@ -17,9 +21,11 @@ const DB_URL = process.env.DATABASE_MONGODB
 mongoose
 .connect(DB_URL).then(db => {
     console.log('Database Connection successfuly');
-})
+});
 
-const server = app.listen(PORT, (_) => {
+const io = new Server(server, {cors: '*'});
+
+server.listen(PORT, () => {
     console.log(`SERVER RUN AT : ${PORT}`);
 });
 
@@ -29,4 +35,14 @@ process.on('unhandledRejection', err => {
     server.close(() => {
         process.exit(1);
     })
+});
+
+
+io.on('connect', socket => {
+   console.log(socket.id);
+
+   socket.on('chatMsg', message => {
+     console.log(message);
+     io.emit("message",message);
+   })
 });

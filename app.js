@@ -9,6 +9,7 @@ const authRouter = require('./routes/authRouter');
 const userRouter = require('./routes/userRouter');
 const postRouter = require('./routes/postRouter');
 const viewRouter = require('./routes/viewRouter');
+const convuRouter = require('./routes/convuRouter');
 let globalErrorHandler = require('./controllers/errorController')
 
 
@@ -31,6 +32,7 @@ app.use('/auth', authRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/', viewRouter);
+app.use('/messages', convuRouter);
 
 app.all('*', (req, res, next)=> {
     next(new AppError(`Can't find ${req.originalUrl}`, 404));
