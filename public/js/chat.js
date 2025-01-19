@@ -1,7 +1,10 @@
 // import { io } from 'socket.io-client';
 const formChat = document.querySelector('.chat_form');
 const sectionMessages = document.querySelector('.section_content--messages');
-const socket = io('http://localhost:3000');
+const socket = io(prod_url);
+
+
+
 
 socket.on('connect', () => {
     showMessage('You are connected')
