@@ -54,7 +54,7 @@ function showMessage(message){
 async function sendMsgToDb(user, message){
    try{ 
 
-      const res = await fetch('http://localhost:3000/messages/create-message', {
+      const res = await fetch(`${prod_url}/messages/create-message`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
