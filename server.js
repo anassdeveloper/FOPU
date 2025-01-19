@@ -31,6 +31,7 @@ server.listen(PORT, () => {
 
 process.on('unhandledRejection', err => {
     console.log(err.name, err.message);
+    
     console.log('UNHANDLED REJECTION 🔥 SHOT DOWN...');
     server.close(() => {
         process.exit(1);
@@ -38,11 +39,19 @@ process.on('unhandledRejection', err => {
 });
 
 
+
 io.on('connect', socket => {
    console.log(socket.id);
 
    socket.on('chatMsg', message => {
-     console.log(message);
+     
      io.emit("message",message);
    })
+   
+   socket.on('write', message => {
+      console.log(message)
+      io.emit('write', message);
+   });
+        
+   socket.on('stop_write', () => io.emit('stop'))
 });

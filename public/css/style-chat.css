@@ -82,5 +82,11 @@
     border-radius: 50%;
 }
 .message_img{
-    height: 100%;
+    width:100%;
+}
+
+.message_write{
+    text-align: center;
+    color: black;
+    font-size: 1.56rem;
 }

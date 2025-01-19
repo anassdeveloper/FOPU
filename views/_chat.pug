@@ -3,9 +3,9 @@ extends base
 mixin message(msg)
     .message 
         picture.message_photo 
-            img.message_img(src=msg.photo)
+            img.message_img(src=`${msg.userPhoto}`)
         .message_text 
-            p.message_name= msg.name
+            p.message_name= msg.userName
             //- span.message_time 12:30 ⏱
             p.message_txt= msg.message
 
@@ -19,7 +19,8 @@ block page
             .section_content--messages 
                 each msg in messages 
                     +message(msg)
+            p.message_write
             form.chat_form(data-user=`${JSON.stringify(userLocal)}`) 
-                .form_group 
+                .form_group(data-username= user.name) 
                     input#input_message(type="text" placeholder='enter message' name='message')
                     input#input_btn(type="submit" value='send')
