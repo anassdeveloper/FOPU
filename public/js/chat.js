@@ -4,7 +4,7 @@ const sectionMessages = document.querySelector('.section_content--messages');
 const chat = document.getElementById('input_message');
 const messageWrite = document.querySelector('.message_write');
 const socket = io(prod_url);
-
+let statusCode;
 
 window.onload = e => {
     if(sectionMessages){
@@ -65,6 +65,7 @@ if(formChat){
         e.preventDefault();
         messageWrite.textContent = '';
         let user = JSON.parse(e.target.dataset.user);
+        statusCode = user.id;
         let msg = e.target.elements.input_message.value;
         socket.emit('chatMsg', JSON.stringify({...user, msg}));
         sendMsgToDb(user, msg);
@@ -75,17 +76,31 @@ if(formChat){
 
 
 function showMessage(message){
-    if(!message) return 0;
 
     let info = JSON.parse(message);
+    
     let div = document.createElement('div');
-    div.setAttribute('class', ['message message_self']);
+    
 
-    div.innerHTML = `
+    if(statusCode === info.id){
+        div.setAttribute('class', ['message message_self']);
+        div.innerHTML = `
     <div class="message_text">
         <p class="message_txt">${info.msg}</p>
     </div>
     `;
+    }else{
+        div.setAttribute('class', 'message');
+        div.innerHTML = `
+    <picture class='message_photo'>
+       <img class='message_img' src='${info.photo}' />
+    </picture>
+    <div class="message_text">
+        <p class='message_name'>${info.name}</p>
+        <p class="message_txt">${info.msg}</p>
+    </div>
+    `;
+    }
     // let p = document.createElement('p');
     // p.className = 'message';
     // p.innerText = message;
