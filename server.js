@@ -49,7 +49,7 @@ io.on('connect', socket => {
    })
    
    socket.on('write', message => {
-      console.log(message)
+      
       io.emit('write', message);
    });
         

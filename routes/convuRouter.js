@@ -10,8 +10,11 @@ router.get('/all-messages', async (req, res, next) => {
     })
 })
 router.post('/create-message', catchAsync(async (req, res, next) => {
-    
+    console.log('console any think')
+    console.log(req.body);
+
     const message = await Chat.create({
+        userID: req.body.userID,
         userPhoto: req.body.photo,
         userName: req.body.name,
         message: req.body.message

@@ -63,6 +63,7 @@ socket.on('stop', (txt) => {
 if(formChat){
     formChat.addEventListener('submit',  e => {
         e.preventDefault();
+        messageWrite.textContent = '';
         let user = JSON.parse(e.target.dataset.user);
         let msg = e.target.elements.input_message.value;
         socket.emit('chatMsg', JSON.stringify({...user, msg}));
@@ -74,16 +75,14 @@ if(formChat){
 
 
 function showMessage(message){
+    if(!message) return 0;
+
     let info = JSON.parse(message);
     let div = document.createElement('div');
-    div.setAttribute('class', 'message');
+    div.setAttribute('class', ['message message_self']);
 
     div.innerHTML = `
-    <picture class="message_photo ">
-       <img src=${info.photo} class='message_img'/>
-    </picture>
     <div class="message_text">
-        <p class='message_name'>${info.name}</p>
         <p class="message_txt">${info.msg}</p>
     </div>
     `;
@@ -99,14 +98,14 @@ function showMessage(message){
 
 async function sendMsgToDb(user, message){
    try{ 
-
+      if(!message) return alert('dont send emty message');
       const res = await fetch(`${prod_url}/messages/create-message`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: user._id,
+            userID: user.id,
             name: user.name,
             photo: user.photo,
             message,

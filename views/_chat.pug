@@ -1,13 +1,18 @@
 extends base
 
 mixin message(msg)
-    .message 
-        picture.message_photo 
-            img.message_img(src=`${msg.userPhoto}`)
-        .message_text 
-            p.message_name= msg.userName
-            //- span.message_time 12:30 ⏱
-            p.message_txt= msg.message
+    if(user._id.toString() === msg.userID)
+        .message.message_self
+            .message_text 
+                p.message_txt= msg.message
+    else 
+        .message
+            picture.message_photo 
+                img.message_img(src=`${msg.userPhoto}`)
+            .message_text 
+                p.message_name= msg.userName
+                //- span.message_time 12:30 ⏱
+                p.message_txt= msg.message
 
 
 block page 
