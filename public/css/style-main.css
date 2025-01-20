@@ -18,7 +18,7 @@ html{
 }
 
 @media only screen and (max-width:600px) {
-    html{ font-size:56%;}
+    html{ font-size:59%;}
 }
 
 body{
@@ -84,14 +84,10 @@ input, textarea{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.25rem 2rem;
+    /* padding: 1.25rem 2rem; */
 }
 /* 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 */
-.header_section--user{
-   display: flex;
-   align-items: center;
-   gap: 1rem;
-}
+
 .header_section--photo{
     height: 5rem;
     width: 5rem;
@@ -104,14 +100,34 @@ input, textarea{
     font-weight: 600;
     color: blue;
 }
-.header_section--nav{}
-.header_section--link{}
-.header_section--username{
-    font-size: 2rem;
-    font-weight: bold;
-    color: orangered;
-}
 
+.header_list{
+    list-style: none;
+    font-size: 2.2rem;
+    display: flex;
+}
+.header_list--item:last-child{
+    width: 6.23rem;
+}
+.header_list--item{
+    background-color: #ccc;
+    padding: 1rem;
+    height: 5.54rem;
+    width: 5.34rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid #fff;
+    transition: all .3s ease-in-out;
+}
+.header_list--item:hover{
+    background-color: #777;
+}
+.header_list--link:link{
+    color: #fff;
+}
+.header_list--item i{ color: inherit;}
 .header_section--userinfo{
 
 }

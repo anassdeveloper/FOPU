@@ -1,6 +1,8 @@
 .section_messages{
+    position: relative;
+    height: 100vh;
     max-width: 70rem;
-    
+    background-color: #ccc;
     margin: 3rem auto;
     padding: 1.3rem;
 }
@@ -16,18 +18,26 @@
     margin-bottom: 2.4rem;
 }
 .section_messages-heading{ font-size: 2.4rem;}
+
 .section_content {
-    background-color: #ccc;
-    padding: 1.33rem;
+    /* background-color: #ccc;
+    padding: 1.33rem; */
     
 }
 .section_content--messages{
-    max-height: 40rem;
+    max-height: 78vh;
     overflow-y: scroll;
+    /* padding-bottom: 3rem; */
 }
-
+.chat_form{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+}
 .chat_form input:first-child{
-    background-color: #ccc;
+    background-color: #fff;
     flex: 1;
     font-size: 1.8rem;
     padding: 1rem;
@@ -52,26 +62,27 @@
     flex-direction: row;
 }
 .message {
-    background-color: blue;
+    background-color: #fff;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.2rem;
     max-width: max-content;
-    padding: .5rem 1rem;
-    border-radius: 1rem;
+    padding: .5rem 1.89rem;
+    border-radius: 10rem;
     margin-bottom: 1.44rem;
+    line-height: 1.2;
 }
 
 .message_name{
-    font-size: 1.88rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    color: orange;
+    color: blue;
     letter-spacing: -1px;
 }
 
 .message_txt{
-    color: #fff;
-    font-family: 1.47rem;
+    color: #777;
+    font-size: 1.73rem;
 }
 
 .message_photo{
@@ -80,6 +91,7 @@
     width: 4.5rem;
     overflow: hidden;
     border-radius: 50%;
+    margin-left: -1.33rem;
 }
 .message_img{
     width:100%;

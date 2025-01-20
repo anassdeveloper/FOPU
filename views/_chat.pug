@@ -13,6 +13,9 @@ mixin message(msg)
 block page 
     - let userLocal = {id: user._id, photo: user.photo, name: user.name}
     section.section_messages
+        .box_back
+            a.link--back(href="/")
+                img.back--image(src="/photos/icons/back.png" height="20rem")
         header.section_messages--header 
             h3.section_messages-heading Chat in FOPU 🙄
         main.section_content

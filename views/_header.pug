@@ -6,8 +6,13 @@ header.header_section
             a.header_section--link(href='/login') Login
             a.header_section--link(href='/register') Sign Up 
         else 
-            .header_section--user 
-                a.header_section--username(href="/me")= user.name.split(' ')[0]
-                figure.header_section--photo 
+            ul.header_section--user.header_list 
+              li.header_list--item 
+                a.header_list--link(href='/global-chat')
+                  <i class="fa-brands fa-rocketchat"></i>
+              li.header_list--item 
+                a.header_list--link(href='/me') 
+                  figure.header_section--photo 
                     img.header_section--userphoto(src=user.photo)
+                
                 
