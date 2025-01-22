@@ -15,7 +15,8 @@ main.global_posts
                 .card_box 
                     img.card_box--img(src= post.userPhoto)
                 .card_box.card_box--text 
-                    h3.card_box--name= post.username
+                    h3.card_box--name
+                        a.card_box--link(href=`/user-profil/${post.userId}`)= post.username
                     span.card_post--time depuis 6min
                     if(isArabic(post.title))
                         p.card_post--parag--arabic= post.title

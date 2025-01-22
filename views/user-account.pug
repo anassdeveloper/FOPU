@@ -1,0 +1,17 @@
+extends base
+
+block page 
+    main.user_profil 
+        .box_back
+            a.link--back(href="/")
+                img.back--image(src="/photos/icons/back.png" height="20rem")
+        header.user_header 
+            .user_header--box 
+                figure.user_header--photo 
+                    img.user_header--img(src= user_profil.photo alt=`PHOTO OF ${user_profil.name}`)
+                .user_header--info 
+                    h2.user_header--name= user_profil.name
+                    p.user_header--description= user_profil.bio 
+                    ul.user_header--list 
+                        li.user_header--item= user_profil.posts.length + ' posts'
+                        li.user_header--item 234 abonnes

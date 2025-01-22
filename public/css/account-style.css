@@ -63,3 +63,77 @@
     color: red;
     transform: scale(1.1);
 }
+
+
+/* ____________________ USER PROFILE ___________________ */
+
+.user_profil{
+    /* background-color: aquamarine; */
+
+}
+
+.user_header{
+    background-color: rgb(155, 233, 247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3.2rem 1.2rem;
+}
+
+.user_header--box{
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+.user_header--name{
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+.user_header--info{
+    padding: 1.6rem 0;
+    line-height: 1.2;
+}
+.user_header--description{
+    font-size: 1.4rem;
+    max-width: 75%;
+    margin-bottom: .8rem;
+}
+.user_header--photo{
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: .43rem solid orangered;
+}
+
+.user_header--img{
+    width: 100%;
+}
+
+.user_header--list{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+    font-size: 1.6rem;
+}
+@media only screen and (max-width: 600px) {
+    .user_header--box{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 1rem;
+    }
+    .user_header--description{
+        max-width: 100%;
+    }
+    .user_header--list{
+        justify-content: center;
+    }
+    .user_header--photo{
+        height: 10rem;
+        width: 10rem;
+    }
+}

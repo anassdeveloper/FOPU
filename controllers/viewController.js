@@ -1,6 +1,7 @@
 const Chat = require('../models/chatModel');
 const catchAsync = require('../utils/catchAsync');
 const Post = require('./../models/postModel');
+const User = require('./../models/userModel');
 
 exports.login = (req, res, next) => {
 
@@ -10,6 +11,7 @@ exports.login = (req, res, next) => {
         title: 'Login'
     });
 }
+
 
 exports.getSite = catchAsync(async (req, res, next) => {
     let posts;
@@ -70,7 +72,14 @@ exports.getChat = async  (req, res, next) => {
 
     res.status(200).render('_chat', {title: 'Chat', messages})
 }
-
+exports.getUserprofile = catchAsync(async (req, res, next) => {
+    console.log('RUN AT HERE')
+    const { id } = req.params;
+    console.log(id);
+    const user_profil = await User.findById(id);
+    console.log(user_profil);
+    res.render('user-account', { title: 'Profil', user_profil});
+})
 function uniq(a) {
     var seen = {};
     return a.filter(function(item) {
