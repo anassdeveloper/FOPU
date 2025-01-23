@@ -1,5 +1,16 @@
 extends base
 
+
+mixin createContentGrid(content)
+    - const posts = user_profil.posts.filter(el => el.categorie === content)
+    each post in posts 
+        .card_profilpost 
+            figure.card_profilpost--photo
+                img.card_profilpost--img(src= post.photo)
+        
+
+
+
 block page 
     main.user_profil 
         .box_back
@@ -15,3 +26,17 @@ block page
                     ul.user_header--list 
                         li.user_header--item= user_profil.posts.length + ' posts'
                         li.user_header--item 234 abonnes
+                .user_header--buttons
+                    button.user_header--btn 
+                        span.user_btn--txt Follow 
+                        <i class="fa-solid fa-user-plus"></i>
+                    button.user_header--btn 
+                        span.user_btn--txt Message 
+                        <i class="fa-solid fa-paper-plane"></i>
+        nav.user_navbar 
+            ul.user_navbar--list 
+                li.user_navbar--item.user_navbar--active Photos <i class="fa-solid fa-image"></i>
+                li.user_navbar--item Write <i class="fa-solid fa-pencil"></i>
+                li.user_navbar--item Hot <i class="fa-solid fa-fire"></i>
+        section.user_content--photos.user_content--section
+            +createContentGrid('photo')

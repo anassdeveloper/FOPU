@@ -30,11 +30,17 @@ exports.createNewPost = catchAsync(async (req, res, next) => {
     const { title, userId, userPhoto, username, status } = req.body;
 
     const user = await User.findById({_id: userId});
-    user.posts.push({title, userId,photo: req.file.photo });
+    user.posts.push({
+        title, 
+        userId,
+        photo: req.file.photo, 
+        categorie: req.file.photo ? "photo": 'write'
+    });
     await user.save({ validateBeforeSave: false });
     const db = await Post.create({
         title, userId, userPhoto, username, status,
-        photo: req.file.photo
+        photo: req.file.photo,
+        categorie: req.file.photo ? 'photo' : undefined
     });
     res.status(200).json({
         status: "success",

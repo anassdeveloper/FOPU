@@ -81,9 +81,14 @@
 }
 
 .user_header--box{
-    display: flex;
+    /* display: flex;
     align-items: center;
-    gap: 2.4rem;
+    gap: 2.4rem; */
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 10rem 5rem;
+    align-items: center;
+    gap: 2.2rem;
 }
 .user_header--name{
     font-size: 2.4rem;
@@ -118,14 +123,33 @@
     list-style: none;
     font-size: 1.6rem;
 }
+.user_header--buttons{
+    grid-column: 2/-1;
+    display: flex;
+    gap: 1rem;
+}
+.user_header--btn{
+    border: none;
+    outline: none;
+    display: block;
+    width: 13rem;
+    height: 3.2rem;
+    font-size: 1.47rem;
+    border-radius: 10rem;
+}
 @media only screen and (max-width: 600px) {
     .user_header--box{
-        flex-direction: column;
+        /* flex-direction: column;
         justify-content: center;
         align-items: center;
         text-align: center;
-        gap: 1rem;
+        gap: 1rem; */
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
     }
+    
     .user_header--description{
         max-width: 100%;
     }
@@ -136,4 +160,69 @@
         height: 10rem;
         width: 10rem;
     }
+}
+
+
+/* _________________ USER PROFILR NAVBAR____________ */
+
+.user_navbar {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #ccc;
+}
+.user_navbar--list{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.user_navbar--item{
+    font-size: 2rem;
+    padding: 1.2rem 3.2rem;
+    border: 1px solid #ccc;
+    border-radius: .4rem;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+}
+.user_navbar--item:hover{
+    background-color: rgb(155, 233, 247);
+    transform: scale(1.02);
+}
+.user_navbar--item:last-child i {
+    color: orange;
+}
+
+.user_navbar--item.user_navbar--active {
+    background-color: rgb(155, 233, 247);
+}
+
+@media only screen and (max-width:600px){
+    .user_navbar{ padding:1.5rem .6rem;}
+    .user_navbar--list{ gap: .8rem;}
+    .user_navbar--item{
+        font-size: 1.31rem;
+        width: 12.5rem;
+    }
+}
+
+
+/* __________________ USER PROFIL CONTENT TYPE ____________ */
+
+.user_content--section{
+    max-width: 80%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 2rem;
+    margin: 2rem auto;
+}
+
+.card_profilpost--img{ width: 100%;}
+
+@media  only screen and (max-width: 600px) {
+    .user_content--section{ grid-template-columns: 1fr; }
 }

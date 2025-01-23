@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const postSchema = new mongoose.Schema({
     title: String,
     photo: String,
@@ -13,6 +14,10 @@ const postSchema = new mongoose.Schema({
     status: {
         type: String,
         default: 'public'
+    },
+    categorie: {
+        type: 'String',
+        default: 'write'
     }
 });
 
