@@ -5,19 +5,30 @@ block content
 
     .register_container 
         form.form_register
-            h3 create you self account 😎
+            h3.form_login--heading create you self account 
+            p.form_login--message start chat and create posts 😎
             .form_group 
-                input(type="text" name="name" placeholder="full name")
-            .form_group 
-                input(type="email" name="email" placeholder="example@email.com") 
+                label.form_group--label Full Name :
+                .form_group--input 
+                    <i class="fa-solid fa-user"></i>
+                    input(type="text" name="name" placeholder="full name")
             .form_group
-                label Password :
-                input(type="password" name="password" placeholder='**********')
+                label.form_group--label Address email :
+                .form_group--input 
+                    <i class="fa-solid fa-envelope"></i>
+                    input(type="email" name="email" placeholder="example@email.com") 
             .form_group
-                label Confirm Password :
-                input(type="password" name="passwordConfirm" placeholder='**********') 
+                label.form_group--label Password :
+                .form_group--input
+                    <i class="fa-solid fa-lock"></i>
+                    input(type="password" name="password" placeholder='create your password')
             .form_group
-                label Choose Your photo
-                input(type="file" name="photo" accept='image/*')
+                label.form_group--label Password Confirm:
+                .form_group--input
+                    <i class="fa-solid fa-lock"></i>
+                    input(type="password" name="passwordConfirm" placeholder='create your password')
+            //- .form_group
+            //-     label Choose Your photo
+            //-     input(type="file" name="photo" accept='image/*')
             .form_group
-                button.btn--b(type="submit") send
+                button.btn--b(type="submit") register

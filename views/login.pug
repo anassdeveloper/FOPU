@@ -2,12 +2,17 @@ extends base
 
 block content
     form.form_login
-        - console.log(user)
+        h3.form_login--heading Login Account 
+        p.form_login--message Please login with register account
         .form_group 
             label.form_label(for='email') Address Email :
-            input#email.input_field(type="email" placeholder="example@email.com" name='email')
+            .form_group--input 
+                <i class="fa-solid fa-envelope"></i>
+                input#email.input_field(type="email" placeholder="example@email.com" name='email')
         .form_group 
             label.form_label(for='email') Password :
-            input#password.input_field(type="password" placeholder="*******" name='password')
+            .form_group--input 
+                <i class="fa-solid fa-lock"></i>
+                input#password.input_field(type="password" placeholder="create your password" name='password')
         .form_group 
-            button#submit.input_field.btn--b(type="submit") submit
+            button#submit.input_field.btn--b(type="submit") Sign in

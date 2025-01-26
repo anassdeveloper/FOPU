@@ -67,8 +67,7 @@ exports.newuser = catchAsync(async(req, res, next) => {
          email,
          password,
          passwordConfirm,
-         photo: req.file.photo
-     });
+    });
 
      res.status(200).json({
          status: 'success',
