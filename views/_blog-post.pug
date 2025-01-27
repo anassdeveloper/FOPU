@@ -7,20 +7,24 @@ main.global_posts
         .card_post
             - if(user._id == post.userId || user.role === 'admin') 
                 button.card_post--btn(data-id= post._id) <i class="fa-solid fa-ellipsis-vertical"></i>
-            - if(post.photo)
-                figure.card_post--photo 
-                    img.card_post--img(src= post.photo alt='POST PHOTO')
-            - else span  
             .card_post--content 
                 .card_box 
                     img.card_box--img(src= post.userPhoto)
                 .card_box.card_box--text 
                     h3.card_box--name
-                        a.card_box--link(href=`/user-profil/${post.userId}`)= post.username
+                        - if(user._id == post.userId)
+                            span.card_box--link= post.username
+                        - else 
+                            a.card_box--link(href=`/user-profil/${post.userId}`)= post.username
                     span.card_post--time depuis 6min
-                    if(isArabic(post.title))
+                    - if(isArabic(post.title))
                         p.card_post--parag--arabic= post.title
-                    else 
+                    - else 
                         p.card_post--parag= post.title 
+            - if(post.photo)
+                figure.card_post--photo 
+                    img.card_post--img(src= post.photo alt='POST PHOTO')
+            
+                
             
     

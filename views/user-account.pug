@@ -4,15 +4,19 @@ extends base
 mixin createContentGrid(content)
     - const posts = user_profil.posts.filter(el => el.categorie === content)
     each post in posts 
-        .card_profilpost 
-            figure.card_profilpost--photo
-                img.card_profilpost--img(src= post.photo)
+        .card_profilpost
+            - if(content === 'photo') 
+                figure.card_profilpost--photo
+                    img.card_profilpost--img(src= post.photo)
+            - else 
+                .card_profilpost--write= post.title
         
 
 
 
 block page 
     main.user_profil 
+        - user_profil
         .box_back
             a.link--back(href="/")
                 img.back--image(src="/photos/icons/back.png" height="20rem")
@@ -27,16 +31,25 @@ block page
                         li.user_header--item= user_profil.posts.length + ' posts'
                         li.user_header--item 234 abonnes
                 .user_header--buttons
-                    button.user_header--btn 
-                        span.user_btn--txt Follow 
-                        <i class="fa-solid fa-user-plus"></i>
+                    
+                    - if(user.yourInvitations.find(el => el.userId === user_profil._id.toString()))
+                        button(disabled) invitation envoyee
+                    - else 
+                        button.user_header--btn(data-user_profil= JSON.stringify({currentUser: user._id, userId: user_profil._id, username: user_profil.name})) 
+                            span.user_btn--txt Follow 
+                            <i class="fa-solid fa-user-plus"></i>
                     button.user_header--btn 
                         span.user_btn--txt Message 
                         <i class="fa-solid fa-paper-plane"></i>
         nav.user_navbar 
             ul.user_navbar--list 
-                li.user_navbar--item.user_navbar--active Photos <i class="fa-solid fa-image"></i>
-                li.user_navbar--item Write <i class="fa-solid fa-pencil"></i>
-                li.user_navbar--item Hot <i class="fa-solid fa-fire"></i>
-        section.user_content--photos.user_content--section
-            +createContentGrid('photo')
+                li#photos.user_navbar--item.user_navbar--active Photos <i class="fa-solid fa-image"></i>
+                li#write.user_navbar--item Write <i class="fa-solid fa-pencil"></i>
+                li#hot.user_navbar--item Hot <i class="fa-solid fa-fire"></i>
+        section.user_content--section
+            .user_content--photos.grid.user_active
+                +createContentGrid('photo')
+            .user_content--write.grid 
+                +createContentGrid('write')
+            .user_content--hot.grid 
+                p we work at content 🌦

@@ -158,3 +158,14 @@ exports.testQuery = (req, res) => {
     console.log(req.query);
     res.status(502).json({status: 'UNLOCKED', message: 'Developer is work at endpoint'})
 }
+
+exports.sendInvitation = catchAsync(async (req, res, next) => {
+    const currentUser = await User.findById( req.params.id);
+    currentUser.yourInvitations.push({userId: req.query.id, userName: req.query.name})
+    await currentUser.save({ validateBeforeSave: false });
+    
+    res.status(200).json({
+        status: 'success',
+        data: currentUser
+    });
+})

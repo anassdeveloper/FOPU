@@ -144,7 +144,7 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", en
 }
 /* __________ FORM LOGIN _________ */
 .form_login, .form_register{
-    max-width: 70rem;
+    max-width: 45rem;
     margin: 0 auto;
     padding: 3.2rem 1.8rem;
 }
@@ -163,14 +163,16 @@ filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FF930F", en
 }
 .form_group--input{
     border: 1px solid #ccc;
-    max-width: 40%;
+    max-width: 92%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 1.2rem;
     padding: 1rem;
     border-radius: 1rem;
+    margin-left: .8rem;
 }
+
 .form_group--input i {
     font-size: 1.45rem;
     color: #ccc;
@@ -301,9 +303,10 @@ input, textarea{
     max-height: 45rem;
     position: relative;
     border-radius: 2.25rem;
-    padding-bottom: 1.63rem;
-    box-shadow: .2rem .3rem 1.23rem rgba(0, 0, 0, 0.356);
+    /* padding-bottom: 1.63rem; */
+    /* box-shadow: .2rem .3rem 1.23rem rgba(0, 0, 0, 0.356); */
     overflow: hidden;
+    border: 1px solid #ccc;
 }
 
 .card_post--btn{
@@ -346,8 +349,9 @@ input, textarea{
     overflow: hidden;
     cursor: pointer;
     transition: all .33s ease;
+    transform: scale(1.1);
 }
-.card_post--photo:hover{
+/* .card_post--photo:hover{
     overflow: visible;
 }
 .card_post--photo:hover img{
@@ -355,7 +359,7 @@ input, textarea{
 }
 .card_post--photo:hover + div{
     opacity: 0;
-}
+} */
 .card_post--img{
    width: 100%;
    transition: inherit;
@@ -365,49 +369,42 @@ input, textarea{
    display: flex;
    align-items: center;
    gap: 1.2rem;
-   padding: .73rem;
+   padding: .5rem;
+   margin-bottom: 1.6rem;
    transition: opacity .3s ease-in-out;
 }
 
 .card_box--img{
-    height: 5.8rem;
-    width: 5.8rem;
+    height: 4.8rem;
+    width: 4.8rem;
     border-radius: 50%;
 }
-.card_box--emoji{
-  margin-left: auto;
-  background-color: orange;
-  border-radius: 1rem;
-  padding: .5rem;
-    font-size: 1.78rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: .4rem;
-}
+
 .card_box--text{
     flex: 1;
     line-height: 1;
     padding: 1rem 0;
 }
-.card_box--name{
-    font-size: 1.83rem;
+.card_box--name .card_box--link:link,
+.card_post--name span{
+    text-decoration: none;
+    font-size: 1.43rem;
     font-weight: bold;
     color: #1A8AD6;
 }
 .card_post--time{
     display: inline-block;
     color: #444;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: 100;
     margin-bottom: .82rem;
 }
 .card_post--parag, .card_post--parag--arabic{
-    font-size: 1.66rem;
+    font-size: 1.26rem;
     padding-left: .92rem;
     color: #0B3B5B;
     letter-spacing: 1.5px;
+    font-weight: 400;
 }
 .card_post--parag--arabic{
     direction: rtl;

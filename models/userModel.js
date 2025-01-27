@@ -53,7 +53,9 @@ const userSchema = new mongoose.Schema({
       default: true,
       select: false
    },
-   posts: Array
+   posts: Array,
+   yourUsers: Array,
+   yourInvitations: Array
 });
 
 // Db bghina nchafro password a7ssan blassa hiya Model o mankhdmoch f controllers
