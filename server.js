@@ -3,11 +3,13 @@ dotenv.config({path: './config.env'});
 const app = require('./app');
 const http = require('http');
 const { Server } = require('socket.io');
+const decodedToken = require('./utils/decodedToken');
 
 const server = http.createServer(app);
 
 const PORT = process.env.PORT || 8000;
 const mongoose = require('mongoose');
+const User = require('./models/userModel');
 
 process.on('uncaughtException', err => {
     console.log(err.name, err.message);
@@ -40,11 +42,15 @@ process.on('unhandledRejection', err => {
 
 
 
-io.on('connect', socket => {
-   console.log(socket.id);
+io.on('connection',socket => {
+ 
+   socket.on('online',async  on => {
+     await User.findByIdAndUpdate(on.message, {online: new Date()});
+   })
+  
+   
 
    socket.on('chatMsg', message => {
-     
      io.emit("message",message);
    })
    

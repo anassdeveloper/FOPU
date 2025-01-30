@@ -114,7 +114,10 @@
 .user_header--img{
     width: 100%;
 }
-
+.user_header--connected{
+    font-size: .8rem;
+    color: rgb(56, 189, 56);
+}
 .user_header--list{
     display: flex;
     justify-content: flex-start;

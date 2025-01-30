@@ -21,12 +21,19 @@ block page
             a.link--back(href="/")
                 img.back--image(src="/photos/icons/back.png" height="20rem")
         header.user_header 
+            - const calcDate = date => {
+            -    const diffInMillisecond = Date.now() - date.getTime();
+            -   const diffInMinutes = Math.floor(diffInMillisecond / ( 1000 * 60))
+            - console.log(diffInMinutes)
+            -   return !diffInMinutes ? false : `Online depuit in : ${diffInMinutes} minutes`
+            - } 
             .user_header--box 
                 figure.user_header--photo 
                     img.user_header--img(src= user_profil.photo alt=`PHOTO OF ${user_profil.name}`)
                 .user_header--info 
                     h2.user_header--name= user_profil.name
                     p.user_header--description= user_profil.bio 
+                    p.user_header--connected= !calcDate(user_profil.online) ? 'online': calcDate(user_profil.online)
                     ul.user_header--list 
                         li.user_header--item= user_profil.posts.length + ' posts'
                         li.user_header--item 234 abonnes

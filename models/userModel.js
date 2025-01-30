@@ -53,6 +53,10 @@ const userSchema = new mongoose.Schema({
       default: true,
       select: false
    },
+   online: {
+      type: Date,
+      default: Date.now()
+   },
    posts: Array,
    yourUsers: Array,
    yourInvitations: Array

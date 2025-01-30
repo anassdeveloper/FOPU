@@ -4,6 +4,8 @@ mixin post(obj)
     .card__bx(data-post=`${JSON.stringify(obj)}`)
         figure.card__bx--photo 
             img.card__bx--image(src=obj.photo)
+
+   
 block  page 
     .box_back 
         a.link--back(href='/') 
@@ -11,13 +13,20 @@ block  page
     .box_setting 
         span.box_setting--icon <i class="fa-solid fa-gear"></i>
     main.account 
+        - const calcDate = date => {
+        -    const diffInMillisecond = Date.now() - date.getTime();
+        -   const diffInMinutes = Math.floor(diffInMillisecond / ( 1000 * 60))
+        -   return !diffInMinutes ? false : ` depuit in : ${diffInMinutes} minutes`
+        - }  
+
         header.account_header 
             picture.account_header--photobox 
                 img.account_header--photo(src=user.photo alt=`Photo of ${user.name}`)
             .account_header--info 
                 strong.account_header--name= user.name
                 p.account_header--username= user.email
-                p.account_header--text= user.bio
+                p.account_header--text= user.bio 
+                p= !calcDate(user.online) ? 'online': calcDate(user.online)
             .account_header--btnbox
                 button.btn_edit.account_header--btn Edit password
                 button.logout.account_header--btn 

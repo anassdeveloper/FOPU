@@ -1,8 +1,9 @@
 const { promisify } = require('util');
-const catchAsync = require('../utils/catchAsync');
+
+const AppError = require('../utils/appError');const catchAsync = require('../utils/catchAsync');
 const User = require('./../models/userModel');
 const jwt = require('jsonwebtoken');
-const AppError = require('../utils/appError');
+
 
 
 const createToken = userID => {
@@ -16,7 +17,7 @@ const createToken = userID => {
 exports.login = catchAsync(async (req, res, next) => {
     const { email, password } = req.body;
     
-    console.log(email, password);
+   
 
     if(!email || !password) {
         next(new AppError('Please provide email or password', 400));
@@ -38,7 +39,8 @@ exports.login = catchAsync(async (req, res, next) => {
 
     res.status(200).json({
         status: 'success',
-        token: createToken(user._id)
+        token: createToken(user._id),
+        userID: user._id
     });
 });
 
@@ -47,7 +49,6 @@ exports.protectRoute = async (req, res, next) => {
       
     const { token } = req.cookies;
     
-
     if(!token) 
         return res.status(404).render('home');
 

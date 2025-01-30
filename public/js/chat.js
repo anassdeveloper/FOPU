@@ -3,7 +3,7 @@ const formChat = document.querySelector('.chat_form');
 const sectionMessages = document.querySelector('.section_content--messages');
 const chat = document.getElementById('input_message');
 const messageWrite = document.querySelector('.message_write');
-const socket = io(prod_url);
+var socket = io(prod_url);
 let statusCode;
 
 window.onload = e => {
@@ -36,9 +36,11 @@ if(chat){
 }
 
 
-socket.on('connect', () => {
-    // showMessage('You are connected')
+socket.on('connect', (data) => {
+   
 });
+
+
 
 socket.on('message', message =>{ 
     showMessage(message);

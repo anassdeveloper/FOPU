@@ -5,6 +5,7 @@ const postBx = Array.from(document.querySelectorAll('.card__bx'));
 
 
 
+
 // 'https://fopu.onrender.com'--'https://fopu.onrender.com';
 
 const local_url = 'http://localhost:3000';
@@ -53,8 +54,10 @@ if(loginForm){
             })
         }).then(res => res.json())
         .then(data => {
+            console.log(data);
             if(data.status === 'success'){
                 showMsg('success', 'You successfully login', '😘');
+                socket.emit('online', {message:data.userID})
                 return location.assign('/');
             }else if (data.status === 'fail'){
                 showMsg('error', 'Please check your email or password', '😢')
@@ -122,8 +125,10 @@ if(formRegister){
            
             
             if(result.status === 'success') {
-                showMsg('success', 'your account created ', '🔥')
-                location.reload(true);
+                showMsg('success', 'your account created ', '🔥');
+                // console.log()
+                // socket.emit('online', {token: result.token});
+                location.assign("/login");
             }else{
                 showMsg('error', 'Somthing wrong', '⛔');
                 removeLoadingBtn(button, 'send');
@@ -149,7 +154,8 @@ if(document.querySelector('.logout')){
             const result = await res.json();
             
             if(result.status === "success") {
-                showMsg('sucess', 'Your logout successfully', '😒')
+                showMsg('sucess', 'Your logout successfully', '😒');
+                socket.on('online', {})
                 location.assign('/');
             }
          }
