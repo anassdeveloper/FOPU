@@ -36,8 +36,20 @@ if(chat){
 }
 
 
-socket.on('connect', (data) => {
-   
+
+socket.on('connect', async (data) => {
+    // document.querySelector('.account_header--connect').textContent = 'online';
+    if(document.querySelector('.header_section')){
+        const id = document.querySelector('.header_section').dataset.userid;
+        try{
+                const res = await fetch(`${prod_url}/auth/connect/${id}`);
+                const data = await res.json();
+                console.log(data);
+        }catch(err){
+                console.log(err)
+        }
+    }
+    
 });
 
 

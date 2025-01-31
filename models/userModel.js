@@ -53,6 +53,15 @@ const userSchema = new mongoose.Schema({
       default: true,
       select: false
    },
+   connect: {
+      type: Boolean, 
+      default: function(){
+         const valMilli = Date.now() - this.online;
+         const valMinutes = Math.floor(valMilli / ( 1000 * 60));
+         if(valMinutes <= 5) return true;
+
+         return false;
+     }},
    online: {
       type: Date,
       default: Date.now()

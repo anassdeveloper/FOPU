@@ -44,8 +44,12 @@ process.on('unhandledRejection', err => {
 
 io.on('connection',socket => {
  
+   io.emit("connection",{message: 'work'})
    socket.on('online',async  on => {
      await User.findByIdAndUpdate(on.message, {online: new Date()});
+   });
+   socket.on('enlign', m => {
+    console.log(m)
    })
   
    
@@ -60,4 +64,6 @@ io.on('connection',socket => {
    });
         
    socket.on('stop_write', () => io.emit('stop'))
+
+   socket.on('disconnect', m => console.log(m))
 });

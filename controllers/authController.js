@@ -155,3 +155,15 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
     })
 
 })
+
+
+exports.upDateConnect = catchAsync(async (req, res, next) => {
+    let user = await User.findById(req.params.id);
+    user.online = Date.now();
+    await user.save({ validateBeforeSave: false });
+    res.status(200).json({
+        status: 'success',
+        message: user
+    });
+    
+})

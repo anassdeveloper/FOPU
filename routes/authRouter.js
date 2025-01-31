@@ -6,6 +6,7 @@ const upload = require('../utils/multer');
 const uploadToCloud = require('../utils/cloudinary');
 
 router.get('/logout', authController.logout);
+router.get('/connect/:id', authController.upDateConnect)
 router.post('/login', authController.login);
 
 router.post('/newuser',upload.single('photo'),
@@ -15,6 +16,7 @@ router.post('/newuser',upload.single('photo'),
 
 router.post('/forgetpassword', authController.forgetPassword);
 router.patch('/update-password',authController.protectRoute, authController.updatePassword);
+
 router.delete('/delete-me', authController.protectRoute, userController.deleteMe);
 
 module.exports = router;

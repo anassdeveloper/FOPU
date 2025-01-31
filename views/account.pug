@@ -26,7 +26,7 @@ block  page
                 strong.account_header--name= user.name
                 p.account_header--username= user.email
                 p.account_header--text= user.bio 
-                p= !calcDate(user.online) ? 'online': calcDate(user.online)
+                p.account_header--connect= !calcDate(user.online) ? 'online': calcDate(user.online)
             .account_header--btnbox
                 button.btn_edit.account_header--btn Edit password
                 button.logout.account_header--btn 
