@@ -9,7 +9,7 @@ const postBx = Array.from(document.querySelectorAll('.card__bx'));
 // 'https://fopu.onrender.com'--'https://fopu.onrender.com';
 
 const local_url = 'http://localhost:3000';
-const prod_url = 0 ? 'https://fopu.onrender.com' : local_url;
+const prod_url = !0 ? 'https://fopu.onrender.com' : local_url;
 
 const showMsg = (type, message, emoji) => {
     let html;
